@@ -7,12 +7,10 @@ function App() {
   return (
     <div className="App">
       <NavTab />
-
-      <Route path="/" />
-      <Route path="/" />
-      <Route path="/" />
-      <Route path="/" />
-      
+      <Route path="/" component={} />
+      <Route path="/" component={} />
+      <Route path="/" component={} />
+      <Route path="/" component={} />
     </div>
   );
 }
