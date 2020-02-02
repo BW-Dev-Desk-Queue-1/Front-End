@@ -1,16 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Route } from 'react-browser-router';
+import { Route } from 'react-router-dom';
 import './App.css';
+
+import Home from './components/Home';
+import NavTab from './components/NavTab';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
     <div className="App">
       <NavTab />
-      <Route path="/" component={} />
-      <Route path="/" component={} />
-      <Route path="/" component={} />
-      <Route path="/" component={} />
+      <Route exact path='/' component={Home}/>
+      <Route path="/home" component={Home} />
+      <Route path="/dashboard" component={Dashboard} />
+      
     </div>
   );
 }
