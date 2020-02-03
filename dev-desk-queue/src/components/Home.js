@@ -1,9 +1,10 @@
 import React from 'react';
+import Ticket from './Ticket';
 
 const Home = () => {
     return (
         <div>
-            Home Component
+            <Ticket />
         </div>
     )
 }
