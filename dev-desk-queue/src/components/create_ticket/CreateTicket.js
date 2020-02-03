@@ -8,6 +8,9 @@ const CreateTicket = props => {
         console.log(ticket);
         setTicket({...ticket,[event.target.name]:event.target.value})
     }
+    function submit(){
+        // submit the form
+    }
 
 return (
   <div className="form">
@@ -38,7 +41,7 @@ return (
       onChange={event => handleChange(event)}
     />
     <br />
-    <label htmlFor='tried'>What have you Tried</label>
+    <label htmlFor="tried">What have you Tried</label>
     <textarea
       id="tried"
       name="tried"
@@ -46,6 +49,10 @@ return (
       placeholder="what have you tried"
       onChange={event => handleChange(event)}
     />
+    <br />
+    <button type="submit" onClick={submit}>
+      Submit Ticket
+    </button>
   </div>
 );
 }

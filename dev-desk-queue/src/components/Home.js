@@ -1,6 +1,6 @@
 import React from 'react';
 import Ticket from './Ticket';
-import CreateTicket from './CreateTicket';
+import CreateTicket from './create_ticket/CreateTicket'
 
 const Home = () => {
     return (
