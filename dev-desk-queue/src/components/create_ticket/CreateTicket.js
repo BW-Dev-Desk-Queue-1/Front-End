@@ -1,59 +1,41 @@
 import React, {useState} from "react";
+import {useForm} from 'react-hook-form';
 
 
 const CreateTicket = props => {
-    const [ticket,setTicket] = useState({title:'',description:'',category:'',tried:'',resolved:false})
-    const handleChange = event => {
-        event.preventDefault();
-        console.log(ticket);
-        setTicket({...ticket,[event.target.name]:event.target.value})
-    }
-    function submit(){
-        // submit the form
-    }
+    const {register, handleSubmit, watch, errors } = useForm();
+        
 
+    const onSubmit = data => 
+    { 
+      console.log(data,"is the data")
+    }
+    
+    
 return (
-  <div className="form">
-    <label htmlFor="title">Ticket Title</label>
+  <form onSubmit={handleSubmit(onSubmit)}>
+    <label>Title</label>
     <input
-      id="title"
       name="title"
-      type="text"
-      placeholder="Ticket Title"
-      onChange={event => handleChange(event)}
-    />{" "}
-    <br />
-    <label htmlFor="description">Ticket Description</label>
-    <input
-      id="description"
-      name="description"
-      type="text"
-      placeholder="Description"
-      onChange={event => handleChange(event)}
+      defaultValue=""
+      ref={register({ required: true, maxLength: 20 })}
     />
+    {errors.title && <p className="error">Title is required</p>}
     <br />
-    <label htmlFor="category">Ticket Category</label>
-    <input
-      id="category"
-      name="category"
-      type="text"
-      placeholder="Category"
-      onChange={event => handleChange(event)}
-    />
+    <label>Description</label>
+    <input name="description" ref={register({ required: true })} />
+    {errors.description && <p className="error">Description is required</p>}
     <br />
-    <label htmlFor="tried">What have you Tried</label>
-    <textarea
-      id="tried"
-      name="tried"
-      type="textarea"
-      placeholder="what have you tried"
-      onChange={event => handleChange(event)}
-    />
+    <label>Category</label>
+    <input name="category" ref={register({ required: true })} />
+    {errors.category && <p className="error">Description is required</p>}
     <br />
-    <button type="submit" onClick={submit}>
-      Submit Ticket
-    </button>
-  </div>
+    <label>What have you Tried?</label>
+    <input name="tried" ref={register({ required: true })} />
+    {errors.tried && <p className="error">Tell us What you have Tried</p>}
+    <br />
+    <input type="submit" />
+  </form>
 );
 }
 export default CreateTicket;
