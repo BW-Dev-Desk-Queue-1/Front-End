@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-browser-router';
+import {NavLink} from 'react-router-dom';
 
 const NavTab = () => {
     // Need some form of Home Page, Some Login/Logout Component for students/helpers, a Dashboard, and some Form Component for
