@@ -1,16 +1,16 @@
 import React from 'react';
 import Title from '../GeneralComponents/Title.js';
-import StudentTicketCategories from './StudentTicketCategories.js';
+import HelperTicketCategories from './HelperTicketCategories.js.js';
 import Menu from '../GeneralComponents/Menu.js';
 import TicketCardList from '..GeneralComponents/TicketCardList';
 import TicketPreview from '../GeneralComponents/TicketPreview.js';
 
-const StudentTicketQueue = () => {
+const HelperTicketQueue = () => {
     //Create div that holds all components of StudentTicketQueue page
     return (
-        <div className='student-ticket-queue'>
+        <div className='helper-ticket-queue'>
             <Title/>
-            <StudentTicketCategories/>
+            <HelperTicketCategories/>
             <Menu/>
             <TicketCardList/>
             <TicketPreview/>
@@ -18,4 +18,4 @@ const StudentTicketQueue = () => {
     );
 }
 
-export default StudentTicketQueue;
+export default HelperTicketQueue;
