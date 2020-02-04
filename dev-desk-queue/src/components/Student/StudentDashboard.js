@@ -3,35 +3,29 @@ import { useParams } from "react-router-dom";
 import StudentNavBar from './StudentNavBar.js';
 import StudentTicketCardList from './StudentTicketCardList.js';
 import StudentTicketPreview from './StudentTicketPreview.js';
+import { connect } from 'react-redux';
+import { fetchTickets } from '../../actions/ticketActions'
 
 import './StudentDashboard.css';
 import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 
-const StudentDashboard = () => {
+const StudentDashboard = (props) => {
     //Login page routes here
     //Leaving ticket creation page routes here
     //Create div that holds all components of StudentTicketQueue page
     const [ticketOpen, setTicketOpen] = useState('open');
     const [detailedTicket, setDetailedTicket] = useState({});
-    const [tickets, setTickets] = useState([])
-    const { id } = useParams();
-    
+    // const [tickets, setTickets] = useState([]) to be deleted
+ 
+    console.log(props.loading)
 
     const handleCardClick = number => {
-        setDetailedTicket(tickets.find(t => {return t.id === parseInt(number)}));
+        setDetailedTicket(props.tickets.find(t => {return t.id === parseInt(number)}));
     }
 
     useEffect(() => {
         const userId = localStorage.getItem('userId')
-        axiosWithAuth()
-        .get(`/api/users/${userId}/tickets/` )
-        .then(response => {
-            
-            console.log(`this is the axios response`, response)
-        })
-        .catch(error => {
-            console.log('data not received', error)
-        })
+        props.fetchTickets(userId)
     }, [])
 
     const openClick = () => {
@@ -40,13 +34,29 @@ const StudentDashboard = () => {
     const closedClick = () => {
         setTicketOpen('closed');
     }
-    return (
+    if (props.tickets){
+  return (
+
         <div className='student-dashboard'>
             <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} />
-            <StudentTicketCardList tickets={tickets} status={ticketOpen} onCardClick={handleCardClick} />
+            <StudentTicketCardList tickets={props.tickets} status={ticketOpen} onCardClick={handleCardClick} />
             <StudentTicketPreview detailedTicket={detailedTicket}/>
         </div>
-    );
+     )
+  } else {
+      return (<div> Loading ticket data...</div>)
+  }
+}
+const mapStateToProps= (state) => {
+    return {
+        loading: state.loading,
+        errors: state.errors,
+        // id: "",
+        // username: "",
+        // password: "",
+        // accessType: "",
+        tickets: state.tickets
+    }
 }
 
-export default StudentDashboard;
+export default connect(mapStateToProps, {fetchTickets})(StudentDashboard);

@@ -1,6 +1,6 @@
 import { FETCHING_ACTIVITY_START,
  FETCHING_ACTIVITY_SUCCESS,
-FETCHING_ACTIVITY_FAILURE } from '../actions/ticketActions';
+FETCHING_ACTIVITY_FAILURE, POST_TICKET_SUCCESS, POST_TICKET_FAILURE} from '../actions/ticketActions';
 
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
   // username: "",
   // password: "",
   // accessType: "",
-  tickets: []
+  tickets: null
 }
 
 export const TicketReducer = (state = initialState, action) => {
@@ -31,7 +31,14 @@ export const TicketReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        erros: action.payload
+        errors: action.payload
+
+      }
+      case POST_TICKET_SUCCESS: 
+      return {
+        ...state,
+        loading: false,
+        tickets: [...state.tickets, action.payload]
 
       }
     default :

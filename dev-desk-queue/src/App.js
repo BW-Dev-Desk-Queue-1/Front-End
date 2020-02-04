@@ -18,10 +18,11 @@ function App() {
   return (
     <Router>    
       <div className="App">
-        <Register />
+        {/* <Register /> */}
       <Switch> 
+        <PrivateRoute exact path='/tickets/new' component={CreateTicket}/>
         <PrivateRoute exact path="/dashboard" component={StudentDashboard} />
-        <Route path='/' component={Login}/>
+        
         <Route path="/" component={Login} />
       </Switch>
       </div>
