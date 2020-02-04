@@ -12,7 +12,7 @@ const Register = () => {
   });
   
   const onSubmit = data => { 
-    axios.post("https://dev-help-desk.herokuapp.com/api/register", data)
+    axios.post("https://dev-help-desk.herokuapp.com/api/login", data)
     .then(res => {console.log(res.data)
    localStorage.setItem('login', JSON.stringify(res.data))
     //history.push('/login')
