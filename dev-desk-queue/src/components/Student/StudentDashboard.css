@@ -1,0 +1,120 @@
+.student-dashboard{
+    display:grid;
+    grid-template-columns: 3fr 4fr 4fr;
+}
+
+.sidebar{
+    /* text-align:center; */
+    border-right: 3px solid #f3f3f3;
+    height: 100vh;
+}
+
+.title{
+    font-size: 30px;
+    font-weight:600;
+    margin: 10% 10%;
+}
+
+.open-tickets{
+    font-size: 24px;
+    padding: 5% 10%;
+    cursor: pointer;
+    margin: 2% 0;
+}
+
+.closed-tickets{
+    font-size: 24px;
+    padding: 5% 10%;
+    cursor: pointer;
+    margin: 2% 0;
+}
+
+.active{
+    font-weight: bold;
+    background-color: #F2FCFF;
+    border-left: 8px solid #48C8E8;
+}
+
+.create-ticket-button{
+    cursor: pointer;
+    background: #0070EB;
+    color: white;
+    padding: 7% 3%;
+    font-size: 20px;
+    text-align:center;
+    margin: 10% 20%;
+    border-radius: 20px;
+}
+
+.ticket-card{
+    border-radius: 8px;
+    margin: 2%;
+}
+
+.ticket-card h2{
+    text-transform: capitalize;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.ticket-card p{
+    font-size: 14px;
+}
+
+.equipment-category{
+    border-left: 6px solid #007AFF;
+}
+.people-category{
+    border-left: 6px solid #E628FF;
+}
+.track-category{
+    border-left: 6px solid #FF6332;
+}
+.finance-category{
+    border-left: 6px solid #48C77B;
+}
+.other-category{
+    border-left: 6px solid #0AC3CF;
+}
+
+.detailed-card{
+    background: white;
+    border-radius: 8px;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.02);
+    margin: 2% 5%;
+    padding: 7% 5%;
+}
+
+.detailed-card h2{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5%; 
+    text-transform: capitalize;
+}
+
+.detailed-card h3{
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 3%
+}
+
+.detailed-card p{
+    font-size: 16px;
+    margin-bottom: 2%
+}
+
+.detailed-card button{
+    background: #F2FCFF;
+    border-radius: 8px;
+    border: 2px solid #48C8E8;
+    position: absolute;
+    left: 90%;
+    top: 7%;
+    width: 5%;
+    cursor: pointer;
+    padding: .2% 0;
+}
+
+.hidden{
+    display:none;
+}

@@ -1,0 +1,39 @@
+.ticket-list{
+    background: #F9FAFB;
+}
+
+.hidden{
+    display:none;
+}
+
+.preview-panel{
+    background: #F9FAFB;
+    height: 100vh;
+}
+
+.ticket-card{
+    background: white;
+    padding: 3%;
+    cursor: pointer;
+    display: flex;
+}
+
+.ticket-card > * {
+    pointer-events:none;
+}
+
+.timestamp{
+    padding: 3% 5% 3% 3%;
+    border-right: 1px solid #E0E0E0;
+    align-self: center;
+    justify-self: center;
+    font-size: 14px;
+    font-weight:bold;
+    text-align: center;
+    width: 20%
+}
+
+.card-summary{
+    padding-left: 4%;
+    white-space: nowrap;
+}

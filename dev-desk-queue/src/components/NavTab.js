@@ -9,7 +9,7 @@ const NavTab = () => {
         <NavLink to="/home" activeClassName="selected" className='nav'>
           Home
         </NavLink>
-        <NavLink to="/dashboard" activeClassName="selected" className='nav'>
+        <NavLink to="/student" activeClassName="selected" className='nav'>
           Dashboard
         </NavLink>
         
