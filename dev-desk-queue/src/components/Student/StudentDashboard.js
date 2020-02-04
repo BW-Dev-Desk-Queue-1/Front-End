@@ -23,9 +23,9 @@ const StudentDashboard = () => {
 
     useEffect(() => {
         axiosWithAuth()
-        .get(`https://dev-help-desk.herokuapp.com/api/users/${id}/tickets/`, )
+        .get(`https://dev-help-desk.herokuapp.com/api/users/${id}/tickets/` )
         .then(response => {
-            // setTickets(response.tickets);
+            setTickets(response.tickets);
             console.log(`this is the axios response`, response)
         })
         .catch(error => {

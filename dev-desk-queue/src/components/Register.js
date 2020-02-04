@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 
@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Register = () => {
+  const [user, setUser] = useState({});
   let history = useHistory();
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur"
@@ -14,8 +15,9 @@ const Register = () => {
   const onSubmit = data => { 
     axios.post("https://dev-help-desk.herokuapp.com/api/login", data)
     .then(res => {console.log(res.data)
-   localStorage.setItem('login', JSON.stringify(res.data))
-    //history.push('/login')
+      setUser(res.data)
+   localStorage.setItem('token', JSON.stringify(res.data.token))
+    history.push('/dashboard')
   })
     .catch(err => console.log(err));
     
