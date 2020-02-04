@@ -1,14 +1,22 @@
 import React, {useState} from "react";
 import {useForm} from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import {connect} from 'react-redux';
+import { postTicket } from "../../actions/ticketActions"
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 
 const CreateTicket = props => {
     const {register, handleSubmit, watch, errors } = useForm();
-        
+ 
+    let history = useHistory();
 
     const onSubmit = data => 
     { 
-      console.log(data,"is the data")
+
+      const userId = localStorage.getItem('userId');
+      props.postTicket(data, userId);
+      history.push('/dashboard')
     }
     
     
@@ -27,15 +35,24 @@ return (
     {errors.description && <p className="error">Description is required</p>}
     <br />
     <label>Category</label>
-    <input name="category" ref={register({ required: true })} />
-    {errors.category && <p className="error">Description is required</p>}
+    <input name="ticketCategory" ref={register({ required: true })} />
+    {errors.ticketCategory && <p className="error">Description is required</p>}
     <br />
     <label>What have you Tried?</label>
     <input name="tried" ref={register({ required: true })} />
     {errors.tried && <p className="error">Tell us What you have Tried</p>}
     <br />
+    <label>Title</label>
+    {/* <input
+      type='hidden'
+      name="resolved"
+      defaultValue='false'
+
+      ref={register({ required: true, maxLength: 20 })}
+    /> */}
     <input type="submit" />
   </form>
 );
 }
-export default CreateTicket;
+
+export default connect(null,{postTicket})(CreateTicket);
