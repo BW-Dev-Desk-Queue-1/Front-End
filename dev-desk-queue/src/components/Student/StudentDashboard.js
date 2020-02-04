@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import StudentNavBar from './StudentNavBar.js'
-import TicketCardList from '../GeneralComponents/TicketCardList.js';
+import StudentTicketCardList from './StudentTicketCardList.js';
 import StudentTicketPreview from './StudentTicketPreview.js';
 
 import './StudentDashboard.css';
@@ -93,7 +93,7 @@ const StudentDashboard = () => {
     return (
         <div className='student-dashboard'>
             <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} />
-            <TicketCardList tickets={tickets} status={ticketOpen} onCardClick={handleCardClick} />
+            <StudentTicketCardList tickets={tickets} status={ticketOpen} onCardClick={handleCardClick} />
             <StudentTicketPreview detailedTicket={detailedTicket}/>
         </div>
     );

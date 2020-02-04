@@ -1,9 +1,9 @@
 import React from 'react';
-import TicketCard from './TicketCard.js';
+import StudentTicketCard from './StudentTicketCard.js';
 
-import './TicketCards.css';
+import './StudentDashboard.css';
 
-const TicketCardList = props => {
+const StudentTicketCardList = props => {
     //create a div that holds TicketCards
     //map through data and create a TicketCard for each item pulled
 
@@ -16,16 +16,16 @@ const TicketCardList = props => {
         <div className='ticket-list'>
             <div className={`open ${props.status === 'open' ? '' : 'hidden'}`}>
                 {props.tickets.map(t => (
-                    !t.resolved ? <TicketCard key={t.id} details={t} handleClick={handleClick} /> : <></>
+                    !t.resolved ? <StudentTicketCard key={t.id} details={t} handleClick={handleClick} /> : <></>
                 ))}
             </div>
             <div className={`closed ${props.status === 'open' ? 'hidden' : ''}`}>
                 {props.tickets.map(t => (
-                    t.resolved ? <TicketCard key={t.id} details={t} handleClick={handleClick} /> : <></>
+                    t.resolved ? <StudentTicketCard key={t.id} details={t} handleClick={handleClick} /> : <></>
                 ))}
             </div>
         </div>
     );
 }
 
-export default TicketCardList;
+export default StudentTicketCardList;

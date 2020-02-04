@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TicketCard = props => {
+const HelperTicketCard = props => {
     //create a card that holds info about:
     //ticket category (color stripe + text)
     //age of the ticket
@@ -34,4 +34,4 @@ const TicketCard = props => {
     );
 }
 
-export default TicketCard;
+export default HelperTicketCard;
