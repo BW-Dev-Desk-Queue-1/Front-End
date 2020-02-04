@@ -20,9 +20,9 @@ function App() {
       <div className="App">
         <Register />
       <Switch> 
-        <Route exact path='/' component={Login}/>
-        <Route path="/home" component={Login} />
-        <Route path="/dashboard" component={StudentDashboard} component={HelperDashboard} />
+        <PrivateRoute exact path="/dashboard/:id" component={StudentDashboard} />
+        <Route path='/' component={Login}/>
+        <Route path="/" component={Login} />
       </Switch>
       </div>
     </Router>
