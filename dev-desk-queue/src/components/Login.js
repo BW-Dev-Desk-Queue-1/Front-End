@@ -1,56 +1,45 @@
-import React, { useState } from 'react';
-import axios from "axios";
+import React, {useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = props => {
-
-  const [loginForm, setLoginForm] = useState({
-    username: "",
-    password: "",
+  
+  let history = useHistory();
+  const { register, errors, handleSubmit } = useForm({
+    mode: "onBlur"
   });
+  
+  const onSubmit = data => { 
+    axios.post("https://dev-help-desk.herokuapp.com/api/login", data)
+    .then(res => {console.log('login token: ',res.data)
+      
+   localStorage.setItem('token', JSON.stringify(res.data.token))
+   localStorage.setItem('userId', JSON.stringify(res.data.userId))
+    history.push('/dashboard')
+  })
+    .catch(err => console.log(err));
+    
 
-  const handleChanges = e => {
-    setLoginForm({
-      ...loginForm,      
-      [e.target.name]: e.target.value
-      })         
-  };
-
-  const handleLogin = e => {
-    e.preventDefault();
-    axios
-      .post("https://dev-help-desk.herokuapp.com/api/login", loginForm)
-      .then(res => {
-        console.log(`this is from login`, res)
-        localStorage.setItem("token", JSON.stringify(res.data.payload));
-        props.history.push("/dashboard")
-      })
-      .catch(err => {
-        console.log(`this is failed login`, err)
-      })
   }
-
+ 
   return (
-    <div>
-    <form onSubmit={handleLogin}>
-        <input
-          type="string"
-          name="username"
-          value={loginForm.username}
-          onChange={handleChanges}
-          placeholder="username"
-        />
-        <input
-          type="password"
-          name="password"
-          value={loginForm.password}
-          onChange={handleChanges}
-          placeholder="password"
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input
+        name="username"
+        ref={register({required: 'true'})}
+      />
+      {errors.username && <span>Username is required</span> }
 
-        />
-        <button onSubmit={handleLogin}>Login</button>
-      </form>
-    </div>
-  )
-}
+      <input
+        name="password"
+        ref={register({required: 'true'})}
+      />
+      {errors.password && <span>Password required</span> }
+
+      <button type="submit">Login</button>
+    </form>
+  );
+};
 
 export default Login

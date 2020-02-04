@@ -6,6 +6,7 @@ const NavTab = () => {
     //Submitting a new ticket, will need a way to view all open tickets
     return (
       <div className='nav-container'>
+        
         <NavLink to="/home" activeClassName="selected" className='nav'>
           Home
         </NavLink>

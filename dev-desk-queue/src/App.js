@@ -20,7 +20,7 @@ function App() {
       <div className="App">
         <Register />
       <Switch> 
-        <PrivateRoute exact path="/dashboard/:id" component={StudentDashboard} />
+        <PrivateRoute exact path="/dashboard" component={StudentDashboard} />
         <Route path='/' component={Login}/>
         <Route path="/" component={Login} />
       </Switch>

@@ -22,10 +22,11 @@ const StudentDashboard = () => {
     }
 
     useEffect(() => {
+        const userId = localStorage.getItem('userId')
         axiosWithAuth()
-        .get(`https://dev-help-desk.herokuapp.com/api/users/${id}/tickets/`, )
+        .get(`/api/users/${userId}/tickets/` )
         .then(response => {
-            // setTickets(response.tickets);
+            
             console.log(`this is the axios response`, response)
         })
         .catch(error => {
