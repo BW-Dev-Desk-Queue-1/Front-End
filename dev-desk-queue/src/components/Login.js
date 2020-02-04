@@ -12,9 +12,10 @@ const Login = props => {
   
   const onSubmit = data => { 
     axios.post("https://dev-help-desk.herokuapp.com/api/login", data)
-    .then(res => {console.log(res.data)
+    .then(res => {console.log('login token: ',res.data)
       
    localStorage.setItem('token', JSON.stringify(res.data.token))
+   localStorage.setItem('userId', JSON.stringify(res.data.userId))
     history.push('/dashboard')
   })
     .catch(err => console.log(err));
