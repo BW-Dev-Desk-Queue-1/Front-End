@@ -1,12 +1,11 @@
-import React from 'react';
-import Ticket from './Ticket';
+import React from 'react'
 
 const Dashboard = () => {
-    return (
-        <div>
-           Dashboard Component
-           <Ticket />
-        </div>
-    )
+  return (
+    <div>
+      something
+    </div>
+  )
 }
-export default Dashboard;
+
+export default Dashboard
