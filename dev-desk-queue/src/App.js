@@ -6,20 +6,21 @@ import Login from "./components/Login"
 import Dashboard from "./components/Dashboard"
 import PrivateRoute from "./utils/PrivateRoute";
 
+import Register from './components/Register';
+
 function App() {
   
   
   return (
-    <Router>
+    <Router>    
       <div className="App">
-   
-
-        <Switch>
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
-          <Route path="/login" component={Login} />
-          <Route component={Login} />
-        </Switch>
-
+        <NavTab />
+        <Register />
+      <Switch>
+        <Route exact path='/' component={Login}/>
+        <Route path="/home" component={Login} />
+        <Route path="/dashboard" component={Dashboard} />
+      </Switch>
       </div>
     </Router>
   );
