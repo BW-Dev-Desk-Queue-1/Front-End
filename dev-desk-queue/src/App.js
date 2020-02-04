@@ -1,9 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import StudentDashboard from './components/Student/StudentDashboard.js';
+import HelperDashboard from './components/Helper/HelperDashboard.js';
+import CreateTicket from './components/CreateTicket/CreateTicket.js';
+
+
 
 import Login from "./components/Login"
-import Dashboard from "./components/Dashboard"
 import PrivateRoute from "./utils/PrivateRoute";
 
 import Register from './components/Register';
@@ -14,12 +18,11 @@ function App() {
   return (
     <Router>    
       <div className="App">
-        <NavTab />
         <Register />
-      <Switch>
+      <Switch> 
         <Route exact path='/' component={Login}/>
         <Route path="/home" component={Login} />
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard" component={StudentDashboard} component={HelperDashboard} />
       </Switch>
       </div>
     </Router>
