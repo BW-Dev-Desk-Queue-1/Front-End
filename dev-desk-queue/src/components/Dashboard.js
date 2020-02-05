@@ -1,9 +1,13 @@
 import React from 'react'
+import StudentDashboard from "./Student/StudentDashboard"
+import HelperDashboard from "./Helper/HelperDashboard"
 
-const Dashboard = () => {
+const Dashboard = props => {
+
   return (
     <div>
-      something
+      <StudentDashboard />
+      <HelperDashboard />
     </div>
   )
 }

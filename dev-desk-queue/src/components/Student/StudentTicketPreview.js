@@ -29,6 +29,7 @@ const StudentTicketPreview = props => {
                 <p>{props.detailedTicket.tried}</p>
                 <button className={`reopen ${props.detailedTicket.resolved ? '' : 'hidden'}`}>Reopen</button>
                 <button className={`edit ${props.detailedTicket.resolved ? 'hidden' : ''}`}>Edit</button>
+                {/* <button>Delete</button> */}
             </div>
         </div>
     );

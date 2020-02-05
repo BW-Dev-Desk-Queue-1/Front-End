@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link, Route } from 'react-router-dom';
 
 const StudentNavBar = props => {
     //Title of our App at the top (The Queue)
     //div that allows toggle between open and closed tickets
     //Create Ticket button that routes to create ticket page and sends form to back end
+    
 
     return(
         <div className='sidebar'>
@@ -16,5 +18,7 @@ const StudentNavBar = props => {
         </div>
     );
 }
+
+
 
 export default StudentNavBar;

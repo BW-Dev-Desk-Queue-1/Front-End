@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Login from '../Login.js';
 import Register from '../Register.js';
+import HelperLogin from '../HelperLogin.js';
+import HelperRegister from '../HelperRegister.js';
 
 import './LoginPage.css'
 
@@ -33,10 +35,12 @@ const LoginPage = () => {
                         <div className={`helper-login ${studentHelperState === 'helper' ? '' : 'helper white-text'}`} onClick={helperClick}>For Helpers</div>
                     </div>
                     <div className='login-forms-bottom'>
-                        <h2 className={`header ${loginRegisterState === 'login' ? '' : 'hidden'}`}>Sign In:</h2>
-                        <h2 className={`header ${loginRegisterState === 'register' ? '' : 'hidden'}`}>Register:</h2>
-                        <Login lr={loginRegisterState}/>
-                        <Register lr={loginRegisterState}/>
+                        <h2 className={`header ${loginRegisterState === 'login' ? '' : 'hidden'}`}>Sign In</h2>
+                        <h2 className={`header ${loginRegisterState === 'register' ? '' : 'hidden'}`}>Register</h2>
+                        <Login lr={loginRegisterState} sh={studentHelperState}/>
+                        <HelperLogin lr={loginRegisterState} sh={studentHelperState} />
+                        <Register lr={loginRegisterState} sh={studentHelperState}/>
+                        <HelperRegister lr={loginRegisterState} sh={studentHelperState} />
                         <div className={`user-check ${loginRegisterState === 'login' ? '' : 'hidden'}`}>Not a user? Click <span className='link' onClick={registerClick}>here</span> to register</div>
                         <div className={`user-check ${loginRegisterState === 'register' ? '' : 'hidden'}`}>Already a user? Click <span className='link' onClick={loginClick}>here</span> to login</div>
                     </div>

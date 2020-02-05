@@ -1,58 +1,50 @@
-import React, { useState } from 'react';
-import axios from "axios";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-import './LoginPage/LoginPage.css'
-
+import './LoginPage/LoginPage.css';
 const Login = props => {
-
-  const [loginForm, setLoginForm] = useState({
-    username: "",
-    password: "",
+  
+  let history = useHistory();
+  const { register, errors, handleSubmit } = useForm({
+    mode: "onBlur"
   });
-
-  const handleChanges = e => {
-    setLoginForm({
-      ...loginForm,      
-      [e.target.name]: e.target.value
-      })         
-  };
-
-  const handleLogin = e => {
-    e.preventDefault();
+  
+  const onSubmit = data => { 
     axios
-      .post("https://dev-help-desk.herokuapp.com/api/login", loginForm)
+      .post("https://dev-help-desk.herokuapp.com/api/login", data)
       .then(res => {
-        console.log(`this is from login`, res)
-        localStorage.setItem("token", JSON.stringify(res.data.payload));
-        props.history.push("/dashboard")
+        console.log('login response: ', res.data)      
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('userId', res.data.userId)
+        localStorage.setItem('accessType', res.data.accessType)
+        history.push('/dashboard')
       })
       .catch(err => {
-        console.log(`this is failed login`, err)
+        console.log(`login error`, err)      
       })
   }
-
+ 
   return (
-    <div className={`login-form ${props.lr === 'login' ? '' : 'hidden'}`}>
-    <form onSubmit={handleLogin}>
+    <div className={`login-form ${props.lr === 'login' && props.sh === 'student' ? '' : 'hidden'}`}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          type="string"
           name="username"
-          value={loginForm.username}
-          onChange={handleChanges}
-          placeholder="username"
+          ref={register({required: 'true'})}
         />
-        <input
-          type="password"
-          name="password"
-          value={loginForm.password}
-          onChange={handleChanges}
-          placeholder="password"
+        {errors.username && <span>Username is required</span> }
 
+        <input
+          name="password"
+          ref={register({required: 'true'})}
         />
-        <button onSubmit={handleLogin}>Login</button>
+        {errors.password && <span>Password required</span> }
+
+        <button type="submit">Login</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default Login

@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import './LoginPage/LoginPage.css';
 
-const Register = props => {
+const HelperRegister = props => {
   const [user, setUser] = useState({});
   let history = useHistory();
   const { register, errors, handleSubmit } = useForm({
@@ -15,7 +15,7 @@ const Register = props => {
   });
   
   const onSubmit = data => { 
-    axios.post("https://dev-help-desk.herokuapp.com/api/register", data)
+    axios.post("https://dev-help-desk.herokuapp.com/api/helpers/register", data)
     .then(res => {console.log(res.data)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('userId', res.data.userId)
@@ -26,7 +26,7 @@ const Register = props => {
   }
  
   return (
-    <div className={`login-form ${props.lr === 'register' && props.sh === 'student' ?  '' : 'hidden'}`}>
+    <div className={`login-form ${props.lr === 'register' && props.sh === 'helper' ? '' : 'hidden'}`}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           name="username"
@@ -46,4 +46,4 @@ const Register = props => {
   );
 };
 
-export default Register;
+export default HelperRegister;

@@ -1,15 +1,19 @@
-import React, {useState} from "react";
+import React from "react";
 import {useForm} from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import {connect} from 'react-redux';
+import { postTicket } from "../../actions/ticketActions"
 
 import './CreateTicket.css';
 
 const CreateTicket = props => {
-    const {register, handleSubmit, watch, errors } = useForm();
-        
+    const {register, handleSubmit, watch, errors } = useForm(); 
+    let history = useHistory();
 
-    const onSubmit = data => 
-    { 
-      console.log(data,"is the data")
+    const onSubmit = data => {
+      const userId = localStorage.getItem('userId');
+      props.postTicket(data, userId);
+      history.push('/dashboard')
     }
     
     
@@ -52,4 +56,5 @@ return (
   </div>
 );
 }
-export default CreateTicket;
+
+export default connect(null,{postTicket})(CreateTicket);
