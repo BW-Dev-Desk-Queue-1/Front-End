@@ -1,6 +1,7 @@
 import React from 'react';
 import './HelperDashboard.css';
 
+
 const HelperTicketPreview = props => {
     //creates a div that shows expanded information about the selected card in the card list
     //preview contains:
@@ -10,6 +11,7 @@ const HelperTicketPreview = props => {
     //what I've tried
     //if open ticket: edit button
     //if closed ticket: reopen button
+    const userId = localStorage.getItem('userId')
     const isEmpty = obj => {
         for(var prop in obj){
             if(obj.hasOwnProperty(prop))
@@ -17,7 +19,9 @@ const HelperTicketPreview = props => {
         }
         return true;
     }
+    
 
+   
     return(
         <div className='preview-panel'>
             <div className={`detailed-card ${isEmpty(props.detailedTicket) ? 'hidden' : ''}`}>
@@ -28,6 +32,8 @@ const HelperTicketPreview = props => {
                 <h3>What I've tried:</h3>
                 <p>{props.detailedTicket.tried}</p>
                 <button className='assign'>Assign</button>
+                <button className='delete' onClick={()=> props.deleteATicket(props.detailedTicket.id)}>Delete</button>
+                
             </div>
         </div>
     );
