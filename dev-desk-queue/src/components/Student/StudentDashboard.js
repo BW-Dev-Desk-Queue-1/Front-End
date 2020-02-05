@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import StudentNavBar from './StudentNavBar.js'
 import StudentTicketCardList from './StudentTicketCardList.js';
 import StudentTicketPreview from './StudentTicketPreview.js';
+import CreateTicket from '../CreateTicket/CreateTicket.js';
 
 import './StudentDashboard.css';
 
@@ -10,6 +11,7 @@ const StudentDashboard = () => {
     //Leaving ticket creation page routes here
     //Create div that holds all components of StudentTicketQueue page
     const [ticketOpen, setTicketOpen] = useState('open');
+    const [createTicket, setCreateTicket] = useState(false);
     const [detailedTicket, setDetailedTicket] = useState({});
     const [tickets, setTickets] = useState([
         {
@@ -90,9 +92,17 @@ const StudentDashboard = () => {
     const closedClick = () => {
         setTicketOpen('closed');
     }
+    const newTicket = () => {
+        setCreateTicket(true);
+    }
+    const closeTicket = () => {
+        setCreateTicket(false);
+    }
+
     return (
         <div className='student-dashboard'>
-            <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} />
+            { createTicket ? <CreateTicket createTicket={createTicket} closeTicket={closeTicket}/> : null }
+            <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} createTicket={newTicket} />
             <StudentTicketCardList tickets={tickets} status={ticketOpen} onCardClick={handleCardClick} />
             <StudentTicketPreview detailedTicket={detailedTicket}/>
         </div>

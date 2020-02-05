@@ -23,6 +23,8 @@ function App() {
         <Route path="/home" component={Login} />
         <Route path="/dashboard" component={StudentDashboard} component={HelperDashboard} />
         <Route path='/login' component={LoginPage} />
+        <Route path='/student' component={StudentDashboard} />
+        <Route path='/helper' component={HelperDashboard} />
       </Switch>
       </div>
     </Router>
