@@ -1,0 +1,145 @@
+.login-page{
+    background: #F9FAFB;
+    height: 100vh;
+}
+
+.login-content{
+    width: 80%;
+    height: 80%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: white;
+
+    border-right: 3px solid #f3f3f3;
+    border-bottom: 3px solid #f3f3f3;
+
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.login-about{
+    padding: 20%;
+}
+
+.student {
+    background: #0070EB;
+}
+
+.helper {
+    background: #C716C4;
+}
+
+.white-text{
+    color:white;
+}
+
+h1 {
+    font-size: 64px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5%;
+    letter-spacing: 1px;
+}
+
+.login-about h2 {
+    font-size: 36px;
+    font-weight: 600;
+    color:white;
+    letter-spacing: 1px;
+    margin-bottom: 5%;
+}
+
+.login-about p {
+    font-size: 24px;
+    color: white;
+}
+
+.for-students{
+    color: white;
+    font-size: 24px;
+}
+
+.for-helpers{
+    color: white;
+    font-size: 24px;
+}
+
+.student-helper-login-toggle{
+    margin: 5% 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.student-login{
+    cursor:pointer;
+    border: 3px solid #0070EB;
+    padding: 3% 5%;
+    border-radius: 12px;
+    width: 30%;
+    text-align: center;
+}
+
+.helper-login{
+    cursor:pointer;
+    border: 3px solid #C716C4;
+    padding: 3% 5%;
+    border-radius: 12px;
+    width: 30%;
+    text-align: center;
+}
+
+.login-forms-bottom{
+    margin-top: 35%
+}
+
+.link{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.header{
+    margin-left: 10%;
+    margin-bottom: 2%;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.user-check{
+    margin-left: 10%;
+    margin-right: 10%;
+    border-top: 1px solid black;
+}
+
+.hidden{
+    display:none;
+}
+
+
+/* Login styles */
+
+.login-form form{
+    display:flex;
+    flex-direction: column;
+}
+
+.login-form input{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    padding: 2% 1%;
+}
+
+.login-form button{
+    width: 80%;
+    margin: 3% auto;
+    padding: 5%;
+    border: none;
+    border-radius: 12px;
+    font-size: 21px;
+    color: darkgrey
+}

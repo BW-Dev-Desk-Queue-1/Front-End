@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from "axios";
 
+import './LoginPage/LoginPage.css'
+
 const Login = props => {
 
   const [loginForm, setLoginForm] = useState({
@@ -30,7 +32,7 @@ const Login = props => {
   }
 
   return (
-    <div>
+    <div className={`login-form ${props.lr === 'login' ? '' : 'hidden'}`}>
     <form onSubmit={handleLogin}>
         <input
           type="string"

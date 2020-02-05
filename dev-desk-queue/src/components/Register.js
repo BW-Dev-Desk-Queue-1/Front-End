@@ -5,7 +5,9 @@ import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 
-const Register = () => {
+import './LoginPage/LoginPage.css'
+
+const Register = props => {
   let history = useHistory();
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur"
@@ -23,21 +25,23 @@ const Register = () => {
   }
  
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        name="username"
-        ref={register({required: 'true'})}
-      />
-      {errors.username && <span>Username is required</span> }
+    <div className={`login-form ${props.lr === 'register' ? '' : 'hidden'}`}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          name="username"
+          ref={register({required: 'true'})}
+        />
+        {errors.username && <span>Username is required</span> }
 
-      <input
-        name="password"
-        ref={register({required: 'true'})}
-      />
-      {errors.password && <span>Password required</span> }
+        <input
+          name="password"
+          ref={register({required: 'true'})}
+        />
+        {errors.password && <span>Password required</span> }
 
-      <button type="submit">Register</button>
-    </form>
+        <button type="submit">Register</button>
+      </form>
+    </div>
   );
 };
 
