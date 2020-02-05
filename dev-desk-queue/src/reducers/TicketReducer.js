@@ -10,8 +10,11 @@ const initialState = {
   // username: "",
   // password: "",
   // accessType: "",
-  tickets: null
+  tickets: null,
+  id:localStorage.getItem('userId')
 }
+
+
 
 export const TicketReducer = (state = initialState, action) => {
   switch(action.type) {
