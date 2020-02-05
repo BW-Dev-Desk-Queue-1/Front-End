@@ -21,8 +21,9 @@ const StudentTicketPreview = props => {
         return true;
     }
 
-    const updateATicket = (ticketId) => {                
-        props.updateTicket(ticketId, userId)
+    const updateATicket = e => {  
+        e.preventDefault();
+        props.updateTicket(props.detailedTicket, userId)
         setEdit(false);
     }
 
@@ -34,7 +35,6 @@ const StudentTicketPreview = props => {
             
         })
     }
-
 
     return(
         <div className='preview-panel'>
@@ -54,7 +54,7 @@ const StudentTicketPreview = props => {
             </div>
             )}
         {edit && (            
-            <form onSubmit={() => updateATicket(props.detailedTicket.id)}>
+            <form onSubmit={updateATicket}>
                <label>Title: 
                    <input 
                    name="title"
@@ -79,7 +79,7 @@ const StudentTicketPreview = props => {
                    onChange={handleEditChanges}
                    value={props.detailedTicket.tried}
                 /></label>
-                <button onSumbit={() => updateATicket(props.detailedTicket.id)}>Update</button>
+                <button>Update</button>
                 <button onClick={() => setEdit(false)}>Cancel</button>
             </form>      
         )}
