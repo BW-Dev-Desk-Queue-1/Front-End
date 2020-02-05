@@ -5,6 +5,8 @@ export const FETCHING_ACTIVITY_FAILURE = "FETCHING_ACTIVITY_FAILURE";
 export const POST_TICKET_SUCCESS = "POST_TICKET_SUCCESS";
 export const POST_TICKET_FAILURE = "POST_TICKET_FAILURE";
 export const DELETE_TICKET_SUCCESS = "DELETE_TICKET_SUCCESS"
+export const UPDATE_TICKET_SUCCESS = "UPDATE_TICKET_SUCCESS";
+
 
 export const fetchTickets = (userId) => dispatch => {
     dispatch({type:FETCHING_ACTIVITY_START});
@@ -22,13 +24,23 @@ export const postTicket = (values, userId) => dispatch => {
         .post(`/api/users/${userId}/tickets`, values)
         .then(res => {
             console.log('posted ticket: ', res)
-            dispatch({ type:POST_TICKET_SUCCESS, payload:res.data })
+            dispatch({ type: POST_TICKET_SUCCESS, payload: res.data })
         })
         .catch(err =>  console.log(err))
 }
 
-export const fetchAllTickets = () => dispatch => {
+export const updateTicket = (ticket, userId) => dispatch => {
+    
+    axiosWithAuth()
+        .put(`/api/users/${userId}/tickets/${ticket.id}`, ticket)
+        .then(res => {
+            console.log(`THIS ONE!`, res)
+            dispatch({ type: UPDATE_TICKET_SUCCESS, payload: res.data })
+        })
+        .catch(err => console.log(err))
+}
 
+export const fetchAllTickets = () => dispatch => {
     dispatch({ type: FETCHING_ACTIVITY_START });
     axiosWithAuth()
         .get(`/api/users`)
