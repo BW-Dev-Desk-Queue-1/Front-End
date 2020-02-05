@@ -32,8 +32,7 @@ const HelperTicketPreview = props => {
                 <h3>What I've tried:</h3>
                 <p>{props.detailedTicket.tried}</p>
                 <button className='assign'>Assign</button>
-                <button className='delete' onClick={()=> props.deleteATicket(props.detailedTicket.id)}>Delete</button>
-                
+                <button className='delete' onClick={()=> props.deleteATicket(props.detailedTicket.id)}>Delete</button>                
             </div>
         </div>
     );

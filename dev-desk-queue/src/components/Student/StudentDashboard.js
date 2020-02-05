@@ -4,7 +4,7 @@ import StudentNavBar from './StudentNavBar.js';
 import StudentTicketCardList from './StudentTicketCardList.js';
 import StudentTicketPreview from './StudentTicketPreview.js';
 import { connect } from 'react-redux';
-import { fetchTickets } from '../../actions/ticketActions'
+import { fetchTickets, updateTicket } from '../../actions/ticketActions'
 import './StudentDashboard.css';
 
 const StudentDashboard = (props) => {
@@ -14,12 +14,13 @@ const StudentDashboard = (props) => {
     const [ticketOpen, setTicketOpen] = useState('open');
     const [detailedTicket, setDetailedTicket] = useState({});
     let history = useHistory();
+    let userId = localStorage.getItem('userId')
 
     const handleCardClick = number => {
         setDetailedTicket(props.tickets.find(t => {return t.id === parseInt(number)}));
     }
 
-    useEffect(() => {
+       useEffect(() => {
         const userId = localStorage.getItem('userId')
         props.fetchTickets(userId)
         history.push("/dashboard")
@@ -37,7 +38,7 @@ const StudentDashboard = (props) => {
         <div className='student-dashboard'>
             <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} />
             <StudentTicketCardList tickets={props.tickets} status={ticketOpen} onCardClick={handleCardClick} />
-            <StudentTicketPreview detailedTicket={detailedTicket}/>
+            <StudentTicketPreview detailedTicket={detailedTicket} setDetailedTicket={setDetailedTicket} updateTicket={props.updateTicket}/>
         </div>
      )
   } else {
@@ -53,4 +54,4 @@ const mapStateToProps= (state) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchTickets})(StudentDashboard);
+export default connect(mapStateToProps, {fetchTickets, updateTicket})(StudentDashboard);
