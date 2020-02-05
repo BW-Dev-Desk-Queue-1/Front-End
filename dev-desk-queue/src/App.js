@@ -21,7 +21,7 @@ function App() {
         {/* <Register /> */}
       <Switch> 
         <PrivateRoute exact path='/tickets/new' component={CreateTicket}/>
-        <PrivateRoute exact path="/dashboard" component={StudentDashboard} />
+        <PrivateRoute exact path="/dashboard" component={HelperDashboard} />
         
         <Route path="/" component={Login} />
       </Switch>
