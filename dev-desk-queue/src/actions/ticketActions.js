@@ -13,15 +13,33 @@ export const fetchTickets = (userId) => dispatch => {
         dispatch({type:FETCHING_ACTIVITY_SUCCESS, payload: res.data.tickets})
     })
     .catch(err => console.log(err))
-
 }
     
 export const postTicket = (values, userId) => dispatch => {
-    console.log('data: ', values, userId)
-    axiosWithAuth().post(`/api/users/${userId}/tickets`, values)
-   .then(res => {
-       console.log('posted ticket: ', res)
-       dispatch({type:POST_TICKET_SUCCESS, payload:res.data})
-   } )
-   .catch(err =>  console.log(err))
+    console.log('data: ', values, userId) 
+    axiosWithAuth()
+        .post(`/api/users/${userId}/tickets`, values)
+        .then(res => {
+            console.log('posted ticket: ', res)
+            dispatch({ type:POST_TICKET_SUCCESS, payload:res.data })
+        })
+        .catch(err =>  console.log(err))
 }
+
+export const fetchAllTickets = () => dispatch => {
+
+    dispatch({ type: FETCHING_ACTIVITY_START });
+    axiosWithAuth()
+        .get(`/api/users`)
+        .then(res => {
+            console.log('Fetch tickets XXX data 17: ', res.data[17].tickets);
+            dispatch({ type: FETCHING_ACTIVITY_SUCCESS, payload: res.data[17].tickets })
+        })
+        .catch(err => console.log(err))
+}
+
+
+
+
+
+

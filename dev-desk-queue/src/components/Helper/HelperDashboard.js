@@ -1,89 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
+import { fetchAllTickets } from "../../actions/ticketActions"
 import HelperNavBar from './HelperNavBar.js'
 import HelperTicketCardList from './HelperTicketCardList.js';
 import HelperTicketPreview from './HelperTicketPreview.js';
-
 import './HelperDashboard.css';
 
-const HelperDashboard = () => {
+const HelperDashboard = props => {
     //Login page routes here
     //Leaving ticket creation page routes here
-    //Create div that holds all components of StudentTicketQueue page
-    const [myTicket, setMyTicket] = useState('mine');
-    const [helperId, setHelperId] = useState(1);
+    //Create div that holds all components of HelperTicketQueue page
+    const [myTicket, setMyTicket] = useState('all');
+    const [helperId, setHelperId] = useState();
     const [detailedTicket, setDetailedTicket] = useState({});
-    const [tickets, setTickets] = useState([
-        {
-            "id": 1,
-            "title": "progress report",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam iaculis at metus sed pellentesque. Aenean tincidunt pharetra accumsan. Morbi nunc justo, efficitur hendrerit dictum vitae, auctor nec dolor. Proin efficitur.",
-            "ticketCategory": "equipment",
-            "created_at": "2020-02-04 07:34:54",
-            "user_id": 2,
-            "resolved": false,
-            "helper_id": 4,
-            "tried": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ex ex, commodo ac nisi ac, facilisis laoreet augue. Sed in leo felis. Proin vitae tristique ex, id suscipit mi. Maecenas."
-        },
-        {
-            "id": 2,
-            "title": "test 2",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt turpis a bibendum bibendum. Vivamus ut nunc massa. Phasellus elit turpis, malesuada pretium interdum in, vehicula at ligula. Ut vulputate.",
-            "ticketCategory": "finance",
-            "created_at": "2020-02-03 07:34:54",
-            "user_id": 2,
-            "resolved": false,
-            "helper_id": 1,
-            "tried": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam commodo nisl ultrices congue suscipit. Fusce aliquam sagittis ante sed feugiat. Nunc et auctor nisl. Sed blandit eros sit amet nisl."
-        },
-        {
-            "id": 3,
-            "title": "test 3",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed orci eget ipsum volutpat pellentesque quis non tellus. Praesent eget tincidunt lorem. Etiam erat augue, dictum sodales turpis in, tincidunt.",
-            "ticketCategory": "people",
-            "created_at": "2020-01-11 07:34:54",
-            "user_id": 2,
-            "resolved": true,
-            "helper_id": 4,
-            "tried": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam fermentum lorem vitae nisi laoreet, nec placerat diam tristique. Nullam suscipit id turpis non dictum. Donec hendrerit finibus ipsum, eget fermentum."
-        },
-        {
-            "id": 4,
-            "title": "test 4",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac magna efficitur, auctor felis vel, rutrum lacus. Fusce vitae iaculis mauris. Vivamus vehicula lacus velit, quis maximus enim faucibus vitae.",
-            "ticketCategory": "track",
-            "created_at": "2019-12-04 07:34:54",
-            "user_id": 2,
-            "resolved": false,
-            "helper_id": 4,
-            "tried": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pulvinar vulputate porta. Pellentesque porttitor et enim posuere dictum. Nullam metus nulla, maximus quis consequat sed, scelerisque quis nibh. Aliquam mollis."
-        },
-        {
-            "id": 5,
-            "title": "test 5",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at diam a libero aliquam aliquet accumsan vel dolor. In sit amet tellus in arcu feugiat tempor. In sagittis purus eu.",
-            "ticketCategory": "other",
-            "created_at": "2012-02-04 07:34:54",
-            "user_id": 2,
-            "resolved": true,
-            "helper_id": 1,
-            "tried": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer facilisis pretium sapien, at laoreet turpis pharetra nec. Proin consectetur sem at tortor lobortis consectetur vel eget arcu. Sed urna leo."
-        }
-    ]);
+    let history = useHistory();
+    const userId = localStorage.getItem('userId')
 
     const handleCardClick = number => {
-        setDetailedTicket(tickets.find(t => {return t.id === parseInt(number)}));
+        setDetailedTicket(props.tickets.find(t => {return t.id === parseInt(number)}));
     }
 
-    // useEffect(() => {
-    //     axios
-    //     .get('https://dev-help-desk.herokuapp.com/api/tickets')
-    //     .then(response => {
-    //         setTickets(response.tickets);
-    //     })
-    //     .catch(error => {
-    //         console.log('data not received', error)
-    //     })
-    // }, [])
+    useEffect(() => {
+        props.fetchAllTickets()
+        history.push("/dashboard")
+    }, [])
 
     const myTicketClick = () => {
         setMyTicket('mine');
@@ -91,13 +32,27 @@ const HelperDashboard = () => {
     const allTicketClick = () => {
         setMyTicket('all');
     }
-    return (
-        <div className='helper-dashboard'>
-            <HelperNavBar myTicket={myTicket} myTicketClick={myTicketClick} allTicketClick={allTicketClick} />
-            <HelperTicketCardList helperId={helperId} tickets={tickets} status={myTicket} onCardClick={handleCardClick} />
-            <HelperTicketPreview detailedTicket={detailedTicket}/>
-        </div>
-    );
+
+    if(!props.tickets) {
+        return <div>Loading...</div>        
+    } else {    
+        return (
+            <div className='helper-dashboard'>
+                <HelperNavBar myTicket={myTicket} myTicketClick={myTicketClick} allTicketClick={allTicketClick} />
+                <HelperTicketCardList helperId={userId} tickets={props.tickets} status={myTicket} onCardClick={handleCardClick} />
+                <HelperTicketPreview detailedTicket={detailedTicket}/>
+            </div>
+        );
+    }
+    
 }
 
-export default HelperDashboard;
+const mapStateToProps= (state) => {
+    return {
+        loading: state.TicketReducer.loading,
+        errors: state.TicketReducer.errors,       
+        tickets: state.TicketReducer.tickets
+    }
+}
+
+export default connect (mapStateToProps, {fetchAllTickets})(HelperDashboard);

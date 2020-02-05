@@ -6,7 +6,7 @@ import './HelperDashboard.css';
 const HelperTicketCardList = props => {
     //create a div that holds TicketCards
     //map through data and create a TicketCard for each item pulled
-    console.log(props)
+
     const handleClick = event => {
         console.log(event)
         props.onCardClick(event.target.getAttribute('data-number'));
