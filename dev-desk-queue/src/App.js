@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
+import Dashboard from './components/Dashboard'
+
 import CreateTicket from './components/CreateTicket/CreateTicket.js';
 import Login from "./components/Login";
 import Register from './components/Register';
@@ -24,7 +26,7 @@ function App() {
         <HelperRegister />
       <Switch> 
         <PrivateRoute exact path='/tickets/new' component={CreateTicket} />
-        <PrivateRoute exact path="/dashboard" component={HelperDashboard} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <Route path="/h" component={HelperLogin} />        
         <Route exact path="/" component={Login} />
       </Switch>
