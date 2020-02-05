@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import StudentNavBar from './StudentNavBar.js';
 import StudentTicketCardList from './StudentTicketCardList.js';
 import StudentTicketPreview from './StudentTicketPreview.js';
@@ -16,8 +16,8 @@ const StudentDashboard = (props) => {
     const [ticketOpen, setTicketOpen] = useState('open');
     const [detailedTicket, setDetailedTicket] = useState({});
     // const [tickets, setTickets] = useState([]) to be deleted
- 
-    console.log(props.loading)
+    let history = useHistory();
+   const [ticketData, setTicetData] = useState();
 
     const handleCardClick = number => {
         setDetailedTicket(props.tickets.find(t => {return t.id === parseInt(number)}));
@@ -26,6 +26,7 @@ const StudentDashboard = (props) => {
     useEffect(() => {
         const userId = localStorage.getItem('userId')
         props.fetchTickets(userId)
+        history.push("/dashboard")
     }, [])
 
     const openClick = () => {
@@ -49,13 +50,10 @@ const StudentDashboard = (props) => {
 }
 const mapStateToProps= (state) => {
     return {
-        loading: state.loading,
-        errors: state.errors,
-        // id: "",
-        // username: "",
-        // password: "",
-        // accessType: "",
-        tickets: state.tickets
+        loading: state.TicketReducer.loading,
+        errors: state.TicketReducer.errors,
+       
+        tickets: state.TicketReducer.tickets
     }
 }
 

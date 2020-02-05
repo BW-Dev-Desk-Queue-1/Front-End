@@ -21,7 +21,7 @@ export const postTicket = (values, userId) => dispatch => {
     axiosWithAuth().post(`/api/users/${userId}/tickets`, values)
    .then(res => {
        console.log('posted ticket: ', res)
-       //dispatch({type:POST_TICKET_SUCCESS, payload:res.data})
+       dispatch({type:POST_TICKET_SUCCESS, payload:res.data})
    } )
    .catch(err =>  console.log(err))
 }
