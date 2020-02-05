@@ -1,19 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
 import {useForm} from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { postTicket } from "../../actions/ticketActions"
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 
 const CreateTicket = props => {
-    const {register, handleSubmit, watch, errors } = useForm();
- 
+    const {register, handleSubmit, watch, errors } = useForm(); 
     let history = useHistory();
 
-    const onSubmit = data => 
-    { 
-
+    const onSubmit = data => {
       const userId = localStorage.getItem('userId');
       props.postTicket(data, userId);
       history.push('/dashboard')

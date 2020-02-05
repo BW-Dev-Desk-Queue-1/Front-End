@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 
-const Register = () => {
+const HelperRegister = () => {
   const [user, setUser] = useState({});
   let history = useHistory();
   const { register, errors, handleSubmit } = useForm({
@@ -13,7 +13,7 @@ const Register = () => {
   });
   
   const onSubmit = data => { 
-    axios.post("https://dev-help-desk.herokuapp.com/api/register", data)
+    axios.post("https://dev-help-desk.herokuapp.com/api/helpers/register", data)
     .then(res => {console.log(res.data)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('userId', res.data.userId)
@@ -25,7 +25,7 @@ const Register = () => {
  
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>student</h2>
+      <h2>helper</h2>
       <input
         name="username"
         ref={register({required: 'true'})}
@@ -43,4 +43,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default HelperRegister;
