@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import StudentNavBar from './StudentNavBar.js';
 import StudentTicketCardList from './StudentTicketCardList.js';
 import StudentTicketPreview from './StudentTicketPreview.js';
 import { connect } from 'react-redux';
 import { fetchTickets } from '../../actions/ticketActions'
-
 import './StudentDashboard.css';
-import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 
 const StudentDashboard = (props) => {
     //Login page routes here
@@ -15,9 +13,7 @@ const StudentDashboard = (props) => {
     //Create div that holds all components of StudentTicketQueue page
     const [ticketOpen, setTicketOpen] = useState('open');
     const [detailedTicket, setDetailedTicket] = useState({});
-    // const [tickets, setTickets] = useState([]) to be deleted
     let history = useHistory();
-   const [ticketData, setTicetData] = useState();
 
     const handleCardClick = number => {
         setDetailedTicket(props.tickets.find(t => {return t.id === parseInt(number)}));

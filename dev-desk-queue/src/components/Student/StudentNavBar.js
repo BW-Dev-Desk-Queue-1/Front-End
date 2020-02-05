@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 const StudentNavBar = props => {
     //Title of our App at the top (The Queue)
@@ -15,17 +14,11 @@ const StudentNavBar = props => {
                 <div className={`open-tickets ${props.ticketOpen === 'open' ? 'active' : ''}`} onClick={props.openClick} status={props.ticketOpen}>Open Tickets</div>
                 <div className={`closed-tickets ${props.ticketOpen === 'open' ? '' : 'active'}`} onClick={props.closedClick} status={props.ticketOpen}>Closed Tickets</div>
             </div>
-            <Link to="/tickets/new"><div className='create-ticket-button'>Create Ticket</div></Link>
-            
-
+            <Link to="/tickets/new"><div className='create-ticket-button'>Create Ticket</div></Link>           
         </div>
     );
 }
 
-const mapPropsToState = (state) => {
-    return {
-        tickets: state.tickets
-    }
-}
 
-export default connect()(StudentNavBar);
+
+export default StudentNavBar;
