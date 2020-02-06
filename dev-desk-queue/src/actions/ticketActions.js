@@ -27,10 +27,12 @@ export const postTicket = (values, userId) => dispatch => {
         .catch(err =>  console.log(err))
 }
 
-export const updateTicket = (ticket, userId) => dispatch => {    
+export const updateTicket = (ticket, userId) => dispatch => { 
+    
     axiosWithAuth()
         .put(`/api/users/${userId}/tickets/${ticket.id}`, ticket)
         .then(res => {
+            
             dispatch({ type: UPDATE_TICKET_SUCCESS, payload: res.data })
         })
         .catch(err => console.log(err))
@@ -56,17 +58,7 @@ export const deleteTicket = ( ticketId, userId ) => dispatch => {
         .catch(err => console.log(err))
 }
 
-// export const assignTicket = ( ticket )  => dispatch => {       
-//     console.log(`assign ticket?`, ticket) 
-//     axiosWithAuth()
-//         .put(`/api/tickets/${ticket.id}`, ticket)
-        
-//         .then(res => {
-//             console.log(`Assign Ticket!`, res)
-//             dispatch({ type: HELPER_ASSIGN_TICKET, payload: res.data  })
-//         })
-//         .catch(err => console.log(err))
-// }
+
 
 export const assignTicket = ( ticket )  => dispatch => {       
     console.log(`assign before api`, ticket) 
