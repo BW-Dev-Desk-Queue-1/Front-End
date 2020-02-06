@@ -52,7 +52,7 @@ export const TicketReducer = (state = initialState, action) => {
     case HELPER_ASSIGN_TICKET :
       return {
         ...state,
-        helper_id: state.tickets.map(
+        tickets: state.tickets.map(
           ticket => ticket.id === action.payload.id ? {...ticket, ...action.payload} : ticket
       )
         

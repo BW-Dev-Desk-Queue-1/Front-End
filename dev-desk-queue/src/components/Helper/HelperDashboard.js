@@ -12,7 +12,7 @@ const HelperDashboard = props => {
     //Login page routes here
     //Leaving ticket creation page routes here
     //Create div that holds all components of HelperTicketQueue page
-    const [myTicket, setMyTicket] = useState('mine');
+    const [myTicket, setMyTicket] = useState('all');
     const [detailedTicket, setDetailedTicket] = useState({});
     let history = useHistory();
     let userId = JSON.parse(localStorage.getItem('userId'))
