@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { fetchAllTickets } from "../../actions/ticketActions"
+import { fetchAllTickets, deleteTicket } from "../../actions/ticketActions"
 import HelperNavBar from './HelperNavBar.js'
 import HelperTicketCardList from './HelperTicketCardList.js';
 import HelperTicketPreview from './HelperTicketPreview.js';
@@ -10,6 +10,8 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 import axios from 'axios';
 
+import { Redirect } from 'react-router-dom'
+
 const HelperDashboard = props => {
     //Login page routes here
     //Leaving ticket creation page routes here
@@ -17,8 +19,7 @@ const HelperDashboard = props => {
     const [myTicket, setMyTicket] = useState('all');
     const [detailedTicket, setDetailedTicket] = useState({});
     let history = useHistory();
-    const userId = localStorage.getItem('userId')
-    const [tickets, setTickets] = useState([]);
+    let userId = localStorage.getItem('userId')
 
     const handleCardClick = number => {
         setDetailedTicket(tickets.find(t => {return t.id === parseInt(number)}));
@@ -36,14 +37,23 @@ const HelperDashboard = props => {
         setMyTicket('all');
     }
 
+    const deleteATicket = (ticketId) => {
+        
+        props.deleteTicket(ticketId, userId)
+        props.fetchAllTickets()
+        setDetailedTicket({});
+        history.push("/dashboard")
+     }
+
     if(!props.tickets) {
         return <div>Loading...</div>        
     } else {    
         return (
             <div className='helper-dashboard'>
                 <HelperNavBar myTicket={myTicket} myTicketClick={myTicketClick} allTicketClick={allTicketClick} />
-                <HelperTicketCardList helperId={userId} tickets={tickets} status={myTicket} onCardClick={handleCardClick} />
-                <HelperTicketPreview detailedTicket={detailedTicket}/>
+                <HelperTicketCardList helperId={userId} tickets={props.tickets} status={myTicket} onCardClick={handleCardClick} />
+                <HelperTicketPreview detailedTicket={detailedTicket} deleteATicket={deleteATicket} 
+                />
             </div>
         );
     }
@@ -58,4 +68,4 @@ const mapStateToProps= (state) => {
     }
 }
 
-export default connect (mapStateToProps, {fetchAllTickets})(HelperDashboard);
+export default connect (mapStateToProps, {fetchAllTickets, deleteTicket})(HelperDashboard);

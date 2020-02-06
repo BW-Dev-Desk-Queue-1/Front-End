@@ -98,9 +98,21 @@
     border-radius: 8px;
     border: 2px solid #48C8E8;
     position: absolute;
-    left: 70%;
-    top: 4%;
-    width: 17%;
+    left: 90%;
+    top:15%;
+    width: 5%;
+    cursor: pointer;
+    padding: .2% 0;
+}
+
+.detailed-card .delete{
+    background: #F2FCFF;
+    border-radius: 8px;
+    border: 2px solid #48C8E8;
+    position: absolute;
+    left: 82%;
+    top: 15%;
+    width: 5%;
     cursor: pointer;
     padding: .2% 0;
 }

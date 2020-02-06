@@ -6,7 +6,7 @@ import StudentTicketPreview from './StudentTicketPreview.js';
 import CreateTicket from '../CreateTicket/CreateTicket.js';
 
 import { connect } from 'react-redux';
-import { fetchTickets } from '../../actions/ticketActions'
+import { fetchTickets, updateTicket } from '../../actions/ticketActions'
 import './StudentDashboard.css';
 
 const StudentDashboard = (props) => {
@@ -18,12 +18,13 @@ const StudentDashboard = (props) => {
     const [detailedTicket, setDetailedTicket] = useState({});
     const [tickets, setTickets] = useState([]);
     let history = useHistory();
+    let userId = localStorage.getItem('userId')
 
     const handleCardClick = number => {
         setDetailedTicket(tickets.find(t => {return t.id === parseInt(number)}));
     }
 
-    useEffect(() => {
+       useEffect(() => {
         const userId = localStorage.getItem('userId')
         props.fetchTickets(userId)
         history.push("/dashboard")
@@ -45,9 +46,9 @@ const StudentDashboard = (props) => {
     return (
         <div className='student-dashboard'>
             { createTicket ? <CreateTicket createTicket={createTicket} closeTicket={closeTicket}/> : null }
-            <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} createTicket={newTicket} />
-            <StudentTicketCardList tickets={tickets} status={ticketOpen} onCardClick={handleCardClick} />
-            <StudentTicketPreview detailedTicket={detailedTicket}/>
+            <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} />
+            <StudentTicketCardList tickets={props.tickets} status={ticketOpen} onCardClick={handleCardClick} />
+            <StudentTicketPreview detailedTicket={detailedTicket} setDetailedTicket={setDetailedTicket} updateTicket={props.updateTicket}/>
         </div>
      )
   } 
@@ -61,4 +62,4 @@ const mapStateToProps= (state) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchTickets})(StudentDashboard);
+export default connect(mapStateToProps, {fetchTickets, updateTicket})(StudentDashboard);
