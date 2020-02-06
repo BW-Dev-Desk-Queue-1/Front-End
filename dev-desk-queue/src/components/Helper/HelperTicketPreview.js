@@ -11,7 +11,8 @@ const HelperTicketPreview = props => {
     //what I've tried
     //if open ticket: edit button
     //if closed ticket: reopen button
-    const userId = localStorage.getItem('userId')
+    console.log(props.detailedTicket)
+    const helperId = localStorage.getItem('userId')
     const isEmpty = obj => {
         for(var prop in obj){
             if(obj.hasOwnProperty(prop))
@@ -20,7 +21,14 @@ const HelperTicketPreview = props => {
         return true;
     }
     
-
+    const handleAssignment=()=> {
+        props.setDetailedTicket({...props.detailedTicket, helper_id: helperId })
+        props.assigATicket(props.detailedTicket)
+    }
+    const updateATicket = () => {
+        handleAssignment();
+        props.updateTicket({}detailedTicket)
+    }
    
     return(
         <div className='preview-panel'>
@@ -31,7 +39,7 @@ const HelperTicketPreview = props => {
                 <p>{props.detailedTicket.description}</p>
                 <h3>What I've tried:</h3>
                 <p>{props.detailedTicket.tried}</p>
-                <button className='assign'>Assign</button>
+                <button className='assign' onClick={updateATicket}>Assign</button>
                 <button className='delete' onClick={()=> props.deleteATicket(props.detailedTicket.id)}>Delete</button>                
             </div>
         </div>

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { fetchAllTickets, deleteTicket } from "../../actions/ticketActions"
+import { fetchAllTickets, deleteTicket, updateTicket } from "../../actions/ticketActions"
 import HelperNavBar from './HelperNavBar.js'
 import HelperTicketCardList from './HelperTicketCardList.js';
 import HelperTicketPreview from './HelperTicketPreview.js';
 import './HelperDashboard.css';
 
-import { Redirect } from 'react-router-dom'
+
 
 const HelperDashboard = props => {
     //Login page routes here
@@ -50,7 +50,12 @@ const HelperDashboard = props => {
             <div className='helper-dashboard'>
                 <HelperNavBar myTicket={myTicket} myTicketClick={myTicketClick} allTicketClick={allTicketClick} />
                 <HelperTicketCardList helperId={userId} tickets={props.tickets} status={myTicket} onCardClick={handleCardClick} />
-                <HelperTicketPreview detailedTicket={detailedTicket} deleteATicket={deleteATicket} 
+                <HelperTicketPreview 
+                detailedTicket={detailedTicket}
+                setDetailedTicket = {setDetailedTicket}
+                deleteATicket={deleteATicket} 
+                updateTicket={props.updateTicket}
+
                 />
             </div>
         );
@@ -66,4 +71,4 @@ const mapStateToProps= (state) => {
     }
 }
 
-export default connect (mapStateToProps, {fetchAllTickets, deleteTicket})(HelperDashboard);
+export default connect (mapStateToProps, {fetchAllTickets, deleteTicket, updateTicket})(HelperDashboard);

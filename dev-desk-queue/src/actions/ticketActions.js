@@ -6,6 +6,7 @@ export const POST_TICKET_SUCCESS = "POST_TICKET_SUCCESS";
 export const POST_TICKET_FAILURE = "POST_TICKET_FAILURE";
 export const DELETE_TICKET_SUCCESS = "DELETE_TICKET_SUCCESS"
 export const UPDATE_TICKET_SUCCESS = "UPDATE_TICKET_SUCCESS";
+export const HELPER_ASSIGN_TICKET = ""
 
 
 export const fetchTickets = (userId) => dispatch => {
@@ -64,7 +65,16 @@ export const deleteTicket = (ticketId,userId) => dispatch => {
 }
 
 
-
+export const assignTicket = ( ticket )  => dispatch => {       
+    console.log(`assign ticket?`, ticket) 
+    axiosWithAuth()
+        .put(`/api/tickets/${ticket.id}`, ticket)
+        .then(res => {
+            console.log(`Assign Ticket!`, res)
+            dispatch({ type: HELPER_ASSIGN_TICKET, payload: res.data  })
+        })
+        .catch(err => console.log(err))
+}
 
 
 
