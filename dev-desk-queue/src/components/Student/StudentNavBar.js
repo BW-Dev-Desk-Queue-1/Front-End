@@ -1,10 +1,16 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const StudentNavBar = props => {
     //Title of our App at the top (The Queue)
     //div that allows toggle between open and closed tickets
     //Create Ticket button that routes to create ticket page and sends form to back end
+    
+    const history = useHistory();
+    const logout = () => {
+        localStorage.clear()
+        history.push("/");
+    }
     
 
     return(
@@ -14,7 +20,8 @@ const StudentNavBar = props => {
                 <div className={`open-tickets ${props.ticketOpen === 'open' ? 'active' : ''}`} onClick={props.openClick} status={props.ticketOpen}>Open Tickets</div>
                 <div className={`closed-tickets ${props.ticketOpen === 'open' ? '' : 'active'}`} onClick={props.closedClick} status={props.ticketOpen}>Closed Tickets</div>
             </div>
-            <Link to="/tickets/new"><div className='create-ticket-button'>Create Ticket</div></Link>           
+            <div className='create-ticket-button' onClick={props.createTicket}>Create Ticket</div>
+            <button onClick={logout}>Logout</button>
         </div>
     );
 }

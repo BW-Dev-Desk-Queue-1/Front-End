@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { fetchAllTickets, deleteTicket, updateTicket } from "../../actions/ticketActions"
+import { fetchAllTickets, deleteTicket, 
+    assignTicket } from "../../actions/ticketActions"
 import HelperNavBar from './HelperNavBar.js'
 import HelperTicketCardList from './HelperTicketCardList.js';
 import HelperTicketPreview from './HelperTicketPreview.js';
 import './HelperDashboard.css';
-
-
 
 const HelperDashboard = props => {
     //Login page routes here
     //Leaving ticket creation page routes here
     //Create div that holds all components of HelperTicketQueue page
     const [myTicket, setMyTicket] = useState('all');
-    const [helperId, setHelperId] = useState();
     const [detailedTicket, setDetailedTicket] = useState({});
     let history = useHistory();
     let userId = localStorage.getItem('userId')
@@ -34,15 +32,17 @@ const HelperDashboard = props => {
     const allTicketClick = () => {
         setMyTicket('all');
     }
-
-    const deleteATicket = (ticketId) => {
-        
+    const deleteATicket = (ticketId) => {        
         props.deleteTicket(ticketId, userId)
-        props.fetchAllTickets()
+        props.fetchAllTickets() 
         setDetailedTicket({});
         history.push("/dashboard")
      }
 
+     
+    
+    
+    console.log(`detailedticket`, detailedTicket)
     if(!props.tickets) {
         return <div>Loading...</div>        
     } else {    
@@ -50,17 +50,11 @@ const HelperDashboard = props => {
             <div className='helper-dashboard'>
                 <HelperNavBar myTicket={myTicket} myTicketClick={myTicketClick} allTicketClick={allTicketClick} />
                 <HelperTicketCardList helperId={userId} tickets={props.tickets} status={myTicket} onCardClick={handleCardClick} />
-                <HelperTicketPreview 
-                detailedTicket={detailedTicket}
-                setDetailedTicket = {setDetailedTicket}
-                deleteATicket={deleteATicket} 
-                updateTicket={props.updateTicket}
-
+                <HelperTicketPreview detailedTicket={detailedTicket} deleteATicket={deleteATicket}  assignTicket={assignTicket} setDetailedTicket={setDetailedTicket}
                 />
             </div>
         );
-    }
-    
+    } 
 }
 
 const mapStateToProps= (state) => {
@@ -71,4 +65,6 @@ const mapStateToProps= (state) => {
     }
 }
 
-export default connect (mapStateToProps, {fetchAllTickets, deleteTicket, updateTicket})(HelperDashboard);
+export default connect (mapStateToProps, 
+    {fetchAllTickets, deleteTicket, assignTicket}
+    )(HelperDashboard);

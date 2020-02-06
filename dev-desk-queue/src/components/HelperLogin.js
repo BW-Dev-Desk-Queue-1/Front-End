@@ -3,10 +3,11 @@ import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-const HelperLogin = () => {
+import './LoginPage/LoginPage.css';
+const HelperLogin = props => {
   
   let history = useHistory();
-  const { register, errors, handleSubmit } = useForm({
+  const { register, errors, handleSubmit, formState } = useForm({
     mode: "onBlur"
   });
   
@@ -26,22 +27,27 @@ const HelperLogin = () => {
   }
  
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>Helper Login</h2>
-      <input
-        name="username"
-        ref={register({required: 'true'})}
-      />
-      {errors.username && <span>Username is required</span> }
+    <div className={`login-form ${props.sh === 'helper' && props.lr === 'login' ? '' : 'hidden'}`}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          name="username"
+          ref={register({required: 'true'})}
+          className={`${formState.touched.username && errors.username ? 'input-error' : ''} ${formState.touched.username && !errors.username ? 'input-valid' : ''}`}
+          placeholder='username'
+        />
+        {errors.username && <span className='error'>Username is required</span> }
 
-      <input
-        name="password"
-        ref={register({required: 'true'})}
-      />
-      {errors.password && <span>Password required</span> }
+        <input
+          name="password"
+          ref={register({required: 'true'})}
+          className={`${formState.touched.password && errors.password ? 'input-error' : ''} ${formState.touched.password && !errors.password ? 'input-valid' : ''}`}
+          placeholder='password'
+        />
+        {errors.password && <span className='error'>Password required</span> }
 
-      <button type="submit">Login</button>
-    </form>
+        <button type="submit" className={`${!errors.password && !errors.username &&formState.isValid ? 'helper white-text' : ''}`}>Login</button>
+      </form>
+    </div>
   );
 };
 

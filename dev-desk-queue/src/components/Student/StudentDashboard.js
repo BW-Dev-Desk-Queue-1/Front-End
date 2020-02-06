@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import StudentNavBar from './StudentNavBar.js';
 import StudentTicketCardList from './StudentTicketCardList.js';
 import StudentTicketPreview from './StudentTicketPreview.js';
+import CreateTicket from '../CreateTicket/CreateTicket.js';
+
 import { connect } from 'react-redux';
 import { fetchTickets, updateTicket } from '../../actions/ticketActions'
 import './StudentDashboard.css';
@@ -12,6 +14,7 @@ const StudentDashboard = (props) => {
     //Leaving ticket creation page routes here
     //Create div that holds all components of StudentTicketQueue page
     const [ticketOpen, setTicketOpen] = useState('open');
+    const [createTicket, setCreateTicket] = useState(false);
     const [detailedTicket, setDetailedTicket] = useState({});
     let history = useHistory();
     let userId = localStorage.getItem('userId')
@@ -32,19 +35,27 @@ const StudentDashboard = (props) => {
     const closedClick = () => {
         setTicketOpen('closed');
     }
-    if (props.tickets){
-  return (
+    const newTicket = () => {
+        setCreateTicket(true);
+    }
+    const closeTicket = () => {
+        setCreateTicket(false);
+    }
 
+    if(!props.tickets) {
+        return <div>Loading...</div>        
+    } else {
+    return (
         <div className='student-dashboard'>
-            <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} />
+            { createTicket ? <CreateTicket createTicket={createTicket} closeTicket={closeTicket}/> : null }
+            <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} createTicket={newTicket} />
             <StudentTicketCardList tickets={props.tickets} status={ticketOpen} onCardClick={handleCardClick} />
             <StudentTicketPreview detailedTicket={detailedTicket} setDetailedTicket={setDetailedTicket} updateTicket={props.updateTicket}/>
         </div>
      )
-  } else {
-      return (<div> Loading ticket data...</div>)
-  }
+  } 
 }
+
 const mapStateToProps= (state) => {
     return {
         loading: state.TicketReducer.loading,
