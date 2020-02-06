@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './StudentDashboard.css';
 
 const StudentTicketPreview = props => {
@@ -26,6 +26,8 @@ const StudentTicketPreview = props => {
         props.updateTicket(props.detailedTicket, userId)
         setEdit(false);
     }
+    
+    
 
     const handleEditChanges = e => {
         e.preventDefault();
@@ -35,25 +37,42 @@ const StudentTicketPreview = props => {
             
         })
     }
+    const handleReopenTicket = () => {
+       
+        props.setDetailedTicket({
+            ...props.detailedTicket,
+            resolved: !props.detailedTicket.resolved
+            
+        })
+        
+       
 
+    }
+    useEffect(()=>{
+        props.updateTicket(props.detailedTicket,userId)
+        
+    },[props.detailedTicket.resolved])
+
+    
+   
     return(
         <div className='preview-panel'>
             {!edit && (
             <div className={`detailed-card ${isEmpty(props.detailedTicket) ? 'hidden' : ''}`}>
                 <div className='detailed-card-contents'>
                     <p>{props.detailedTicket.title}</p>
-                    <h2>{props.detailedTicket.ticketCategory} Issue</h2>
-                    <h3>Description of Issue:</h3>
-                    <p>{props.detailedTicket.description}</p>
-                    <h3>What I've tried:</h3>
-                    <p>{props.detailedTicket.tried}</p>
+                <h2>{props.detailedTicket.ticketCategory} Issue</h2>
+                <h3>Description of Issue:</h3>
+                <p>{props.detailedTicket.description}</p>
+                <h3>What I've tried:</h3>
+                <p>{props.detailedTicket.tried}</p>
                 </div>
                 <div className='detailed-card-buttons'>
-                    <button className={`reopen ${props.detailedTicket.resolved ? '' : 'hidden'}`}>Reopen</button>
-                    <button 
-                        className={`edit ${props.detailedTicket.resolved ? 'hidden' : ''}`}
-                        onClick={() => setEdit(true)}
-                    >Edit</button>
+                <button className={`reopen ${props.detailedTicket.resolved ? '' : 'hidden'}`} onClick = {handleReopenTicket}>Reopen</button>
+                <button 
+                    className={`edit ${props.detailedTicket.resolved ? 'hidden' : ''}`}
+                    onClick={() => setEdit(true)}
+                >Edit</button>
                 </div>
             </div>
             )}
