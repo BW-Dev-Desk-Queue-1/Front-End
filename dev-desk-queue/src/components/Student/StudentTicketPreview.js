@@ -40,47 +40,53 @@ const StudentTicketPreview = props => {
         <div className='preview-panel'>
             {!edit && (
             <div className={`detailed-card ${isEmpty(props.detailedTicket) ? 'hidden' : ''}`}>
-                <p>{props.detailedTicket.title}</p>
-                <h2>{props.detailedTicket.ticketCategory} Issue</h2>
-                <h3>Description of Issue:</h3>
-                <p>{props.detailedTicket.description}</p>
-                <h3>What I've tried:</h3>
-                <p>{props.detailedTicket.tried}</p>
-                <button className={`reopen ${props.detailedTicket.resolved ? '' : 'hidden'}`}>Reopen</button>
-                <button 
-                    className={`edit ${props.detailedTicket.resolved ? 'hidden' : ''}`}
-                    onClick={() => setEdit(true)}
-                >Edit</button>
+                <div className='detailed-card-contents'>
+                    <p>{props.detailedTicket.title}</p>
+                    <h2>{props.detailedTicket.ticketCategory} Issue</h2>
+                    <h3>Description of Issue:</h3>
+                    <p>{props.detailedTicket.description}</p>
+                    <h3>What I've tried:</h3>
+                    <p>{props.detailedTicket.tried}</p>
+                </div>
+                <div className='detailed-card-buttons'>
+                    <button className={`reopen ${props.detailedTicket.resolved ? '' : 'hidden'}`}>Reopen</button>
+                    <button 
+                        className={`edit ${props.detailedTicket.resolved ? 'hidden' : ''}`}
+                        onClick={() => setEdit(true)}
+                    >Edit</button>
+                </div>
             </div>
             )}
         {edit && (            
-            <form onSubmit={updateATicket}>
-               <label>Title: 
+            <form className='edit-form' onSubmit={updateATicket}>
+               <label>Title: <br/>
                    <input 
                    name="title"
                    onChange={handleEditChanges}
                    value={props.detailedTicket.title}
                 /></label>               
-               <label>Category: 
+               <label>Category: <br/>
                    <input 
                    name="ticketCategory" 
                    onChange={handleEditChanges}
                    value={props.detailedTicket.ticketCategory}/
                 ></label>
-               <label>Description: 
+               <label>Description: <br/>
                    <input 
                    name="description" 
                    onChange={handleEditChanges}
                    value={props.detailedTicket.description}
                 /></label>
-               <label>Tried: 
+               <label>Tried: <br/>
                    <input 
                    name="tried" 
                    onChange={handleEditChanges}
                    value={props.detailedTicket.tried}
                 /></label>
-                <button>Update</button>
-                <button onClick={() => setEdit(false)}>Cancel</button>
+                <div className='edit-form-buttons'>
+                    <button>Update</button>
+                    <button onClick={() => setEdit(false)}>Cancel</button>
+                </div>
             </form>      
         )}
 

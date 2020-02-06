@@ -7,7 +7,7 @@
     border-right: 3px solid #f3f3f3;
     height: 100vh;
     position:fixed;
-    width: 30%;
+    width: 25%;
 }
 
 .title{
@@ -73,6 +73,9 @@
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.02);
     margin: 2% 5%;
     padding: 7% 5%;
+
+    display:flex;
+    flex-direction: column;
 }
 
 .detailed-card h2{
@@ -97,15 +100,19 @@
     background: #F2FCFF;
     border-radius: 8px;
     border: 2px solid #48C8E8;
-    position: absolute;
-    left: 85%;
-    top:15%;
-    width: 10%;
+    width: 20%;
     cursor: pointer;
     padding: .2% 0;
 }
 
-.detailed-card .delete{
+.detailed-card-buttons{
+    display:flex;
+    justify-content: space-around;
+
+    margin-top: 10%;
+}
+
+/* .detailed-card .delete{
     background: #F2FCFF;
     border-radius: 8px;
     border: 2px solid #48C8E8;
@@ -126,7 +133,7 @@
     width: 10%;
     cursor: pointer;
     padding: .2% 0;
-}
+} */
 
 .hidden{
     display:none;
@@ -134,7 +141,7 @@
 
 .ticket-list{
     background: #F9FAFB;
-    margin-left: 30%;
+    margin-left: 25%;
     width: 40%;
 }
 
@@ -146,8 +153,8 @@
     background: #F9FAFB;
     height: 100vh;
     position:fixed;
-    width: 30%;
-    margin-left: 70%;
+    width: 35%;
+    margin-left: 65%;
 }
 
 .ticket-card{

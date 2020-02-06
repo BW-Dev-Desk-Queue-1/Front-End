@@ -17,7 +17,7 @@ const HelperNavBar = props => {
             <div className='open-closed-tickets-toggle'>
                 <div className={`my-tickets ${props.myTicket === 'mine' ? 'active' : ''}`} onClick={props.myTicketClick} status={props.myTicket}>My Tickets</div>
                 <div className={`all-tickets ${props.myTicket === 'mine' ? '' : 'active'}`} onClick={props.allTicketClick} status={props.myTicket}>All Tickets</div>
-                <button onClick={logout}>Logout</button>
+                <div className='logout-button' onClick={logout}>Logout</div>
             </div>
         </div>
     );

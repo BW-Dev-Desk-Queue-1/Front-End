@@ -21,7 +21,7 @@ const StudentNavBar = props => {
                 <div className={`closed-tickets ${props.ticketOpen === 'open' ? '' : 'active'}`} onClick={props.closedClick} status={props.ticketOpen}>Closed Tickets</div>
             </div>
             <div className='create-ticket-button' onClick={props.createTicket}>Create Ticket</div>
-            <button onClick={logout}>Logout</button>
+            <div className='logout-button' onClick={logout}>Logout</div>
         </div>
     );
 }
