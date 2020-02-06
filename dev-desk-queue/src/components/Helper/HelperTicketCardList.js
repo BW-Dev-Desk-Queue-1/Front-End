@@ -16,12 +16,13 @@ const HelperTicketCardList = props => {
         <div className='ticket-list'>
             <div className={`mine ${props.status === 'mine' ? '' : 'hidden'}`}>
                 {props.tickets.map(t => (
-                    t.helper_id === props.helperId ? <HelperTicketCard key={t.id} details={t} handleClick={handleClick} /> : <></>
+                    (t.helper_id === props.helperId) && (t.resolved !== true) ? <HelperTicketCard key={t.id} details={t} handleClick={handleClick} /> : <></>
                 ))}
             </div>
             <div className={`all ${props.status === 'mine' ? 'hidden' : ''}`}>
                 {props.tickets.map(t => (
-                    <HelperTicketCard key={t.id} details={t} handleClick={handleClick} />
+                    t.helper_id === null ?
+                    <HelperTicketCard key={t.id} details={t} handleClick={handleClick} /> : <></>
                 ))}
             </div>
         </div>
