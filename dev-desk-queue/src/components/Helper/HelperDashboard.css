@@ -98,9 +98,9 @@
     border-radius: 8px;
     border: 2px solid #48C8E8;
     position: absolute;
-    left: 90%;
+    left: 85%;
     top:15%;
-    width: 5%;
+    width: 10%;
     cursor: pointer;
     padding: .2% 0;
 }
@@ -110,9 +110,20 @@
     border-radius: 8px;
     border: 2px solid #48C8E8;
     position: absolute;
-    left: 82%;
+    left: 75%;
     top: 15%;
-    width: 5%;
+    width: 10%;
+    cursor: pointer;
+    padding: .2% 0;
+}
+.detailed-card .return{
+    background: #F2FCFF;
+    border-radius: 8px;
+    border: 2px solid #48C8E8;
+    position: absolute;
+    left: 65%;
+    top: 15%;
+    width: 10%;
     cursor: pointer;
     padding: .2% 0;
 }

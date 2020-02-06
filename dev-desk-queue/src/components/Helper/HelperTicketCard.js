@@ -30,6 +30,7 @@ const HelperTicketCard = props => {
                 <p>{props.details.title}</p>
                 <h2>{props.details.ticketCategory} Issue</h2>
             </div>
+            
         </div>
     );
 }

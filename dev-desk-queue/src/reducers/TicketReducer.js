@@ -1,6 +1,6 @@
 import { FETCHING_ACTIVITY_START,
  FETCHING_ACTIVITY_SUCCESS,
-FETCHING_ACTIVITY_FAILURE, POST_TICKET_SUCCESS, POST_TICKET_FAILURE, UPDATE_TICKET_SUCCESS} from '../actions/ticketActions';
+FETCHING_ACTIVITY_FAILURE, POST_TICKET_SUCCESS, POST_TICKET_FAILURE, UPDATE_TICKET_SUCCESS, HELPER_ASSIGN_TICKET} from '../actions/ticketActions';
 
 
 const initialState = {
@@ -42,16 +42,22 @@ export const TicketReducer = (state = initialState, action) => {
         errors: action.payload
       }
     case UPDATE_TICKET_SUCCESS :
-    return {
-      ...state,
-      loading: false, 
-      tickets: state.tickets.map(ticket => {
-        if(ticket.id === action.payload.id) {
-          return {...ticket, ...action.payload}
-        }
-        return ticket
-      })
+      return {
+        ...state,
+        loading: false, 
+        tickets: state.tickets.map(
+          ticket => ticket.id === action.payload.id ? {...ticket, ...action.payload} : ticket
+      )
     }
+    case HELPER_ASSIGN_TICKET :
+      return {
+        ...state,
+        helper_id: state.tickets.map(
+          ticket => ticket.id === action.payload.id ? {...ticket, ...action.payload} : ticket
+      )
+        
+      }
+    
     default :
       return state
   }
