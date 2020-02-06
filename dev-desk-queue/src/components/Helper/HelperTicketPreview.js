@@ -44,8 +44,41 @@ const HelperTicketPreview = props => {
      const assignATicket = (ticket) => { 
         helperId()     
         props.assignTicket(ticket)
+        props.setDetailedTicket({})
         history.push("/dashboard")
     }
+
+    const unAssignHelperId = () => {
+        props.setDetailedTicket({
+            ...props.detailedTicket,
+            helper_id: null,
+        });
+     }
+   
+
+    const returnATicket = (ticket) => { 
+        unAssignHelperId();
+        props.assignTicket(ticket)
+        props.setDetailedTicket({})
+        history.push("/dashboard")
+    }
+
+    const resolveTickerHelper = () => {
+        props.setDetailedTicket({
+            ...props.detailedTicket,
+            resolved: true,
+        });
+     }
+
+     const resolveATicket=(ticket) => {
+        resolveTickerHelper();
+        props.assignTicket(ticket)
+        props.setDetailedTicket({})
+        
+        history.push("/dashboard")
+    
+         
+     }
    
     return(
         <div className='preview-panel'>
@@ -64,15 +97,23 @@ const HelperTicketPreview = props => {
                         } 
                     )}>Assign</button> */}
                
-                <div className='detailed-card-buttons'>
+<div className='detailed-card-buttons'>
     {props.detailedTicket.helper_id===userId ? (<>
-        <button className="return">Return</button>
-        <button className="assign">Resolve</button>
+        <button className="return" onClick={()=> returnATicket({ 
+        id: props.detailedTicket.id,
+        helper_id: null
+        } 
+    )}>Return</button>
+        <button className="assign" onClick={()=> resolveATicket({ 
+        id: props.detailedTicket.id,
+        resolved: true
+        } 
+    )}>Resolve</button>
         <button className='delete' onClick={()=> props.deleteATicket(props.detailedTicket.id)}>Delete</button> 
         </>)
     : (<button className='assign' onClick={()=> assignATicket({ 
         id: props.detailedTicket.id,
-        helper_id: props.detailedTicket.helper_id
+        helper_id: userId
         } 
     )}>Assign</button>)}              
                 </div>
