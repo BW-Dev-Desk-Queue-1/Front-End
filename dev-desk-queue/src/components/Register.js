@@ -16,7 +16,7 @@ const Register = () => {
     axios.post("https://dev-help-desk.herokuapp.com/api/register", data)
     .then(res => {console.log(res.data)
       localStorage.setItem('token', res.data.token)
-      localStorage.setItem('userId', res.data.userId)
+      localStorage.setItem('userId', res.data.id)
       localStorage.setItem('accessType', res.data.accessType)
       history.push('/dashboard')
     })
