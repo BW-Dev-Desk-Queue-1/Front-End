@@ -5,10 +5,12 @@ import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 
-const HelperRegister = () => {
+import './LoginPage/LoginPage.css';
+
+const HelperRegister = props => {
   const [user, setUser] = useState({});
   let history = useHistory();
-  const { register, errors, handleSubmit } = useForm({
+  const { register, errors, handleSubmit, formState } = useForm({
     mode: "onBlur"
   });
   
@@ -24,22 +26,27 @@ const HelperRegister = () => {
   }
  
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>helper</h2>
-      <input
-        name="username"
-        ref={register({required: 'true'})}
-      />
-      {errors.username && <span>Username is required</span> }
+    <div className={`login-form ${props.lr === 'register' && props.sh === 'helper' ? '' : 'hidden'}`}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          name="username"
+          ref={register({required: 'true'})}
+          className={`${formState.touched.username && errors.username ? 'input-error' : ''} ${formState.touched.username && !errors.username ? 'input-valid' : ''}`}
+          placeholder='username'
+        />
+        {errors.username && <span className='error'>Username is required</span> }
 
-      <input
-        name="password"
-        ref={register({required: 'true'})}
-      />
-      {errors.password && <span>Password required</span> }
+        <input
+          name="password"
+          ref={register({required: 'true'})}
+          className={`${formState.touched.password && errors.password ? 'input-error' : ''} ${formState.touched.password && !errors.password ? 'input-valid' : ''}`}
+          placeholder='password'
+        />
+        {errors.password && <span className='error'>Password required</span> }
 
-      <button type="submit">Register</button>
-    </form>
+        <button type="submit">Register</button>
+      </form>
+    </div>
   );
 };
 

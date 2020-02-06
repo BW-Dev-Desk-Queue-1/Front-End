@@ -1,12 +1,13 @@
 .helper-dashboard{
-    display:grid;
-    grid-template-columns: 3fr 4fr 4fr;
+    display:flex;
 }
 
 .sidebar{
     /* text-align:center; */
     border-right: 3px solid #f3f3f3;
     height: 100vh;
+    position:fixed;
+    width: 30%;
 }
 
 .title{
@@ -122,6 +123,8 @@
 
 .ticket-list{
     background: #F9FAFB;
+    margin-left: 30%;
+    width: 40%;
 }
 
 .hidden{
@@ -131,6 +134,9 @@
 .preview-panel{
     background: #F9FAFB;
     height: 100vh;
+    position:fixed;
+    width: 30%;
+    margin-left: 70%;
 }
 
 .ticket-card{
@@ -138,6 +144,7 @@
     padding: 3%;
     cursor: pointer;
     display: flex;
+    width: 100%
 }
 
 .ticket-card > * {

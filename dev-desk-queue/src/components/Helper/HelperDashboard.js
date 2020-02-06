@@ -6,6 +6,9 @@ import HelperNavBar from './HelperNavBar.js'
 import HelperTicketCardList from './HelperTicketCardList.js';
 import HelperTicketPreview from './HelperTicketPreview.js';
 import './HelperDashboard.css';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+
+import axios from 'axios';
 
 import { Redirect } from 'react-router-dom'
 
@@ -14,7 +17,6 @@ const HelperDashboard = props => {
     //Leaving ticket creation page routes here
     //Create div that holds all components of HelperTicketQueue page
     const [myTicket, setMyTicket] = useState('all');
-    const [helperId, setHelperId] = useState();
     const [detailedTicket, setDetailedTicket] = useState({});
     let history = useHistory();
     let userId = localStorage.getItem('userId')
