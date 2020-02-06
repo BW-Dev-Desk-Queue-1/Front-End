@@ -10,7 +10,7 @@ import './LoginPage/LoginPage.css';
 const HelperRegister = props => {
   const [user, setUser] = useState({});
   let history = useHistory();
-  const { register, errors, handleSubmit } = useForm({
+  const { register, errors, handleSubmit, formState } = useForm({
     mode: "onBlur"
   });
   
@@ -31,14 +31,18 @@ const HelperRegister = props => {
         <input
           name="username"
           ref={register({required: 'true'})}
+          className={`${formState.touched.username && errors.username ? 'input-error' : ''} ${formState.touched.username && !errors.username ? 'input-valid' : ''}`}
+          placeholder='username'
         />
-        {errors.username && <span>Username is required</span> }
+        {errors.username && <span className='error'>Username is required</span> }
 
         <input
           name="password"
           ref={register({required: 'true'})}
+          className={`${formState.touched.password && errors.password ? 'input-error' : ''} ${formState.touched.password && !errors.password ? 'input-valid' : ''}`}
+          placeholder='password'
         />
-        {errors.password && <span>Password required</span> }
+        {errors.password && <span className='error'>Password required</span> }
 
         <button type="submit">Register</button>
       </form>

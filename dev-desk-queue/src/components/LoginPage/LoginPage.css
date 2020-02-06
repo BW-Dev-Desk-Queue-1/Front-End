@@ -34,7 +34,7 @@
 }
 
 .white-text{
-    color:white;
+    color:white !important;
 }
 
 h1 {
@@ -130,16 +130,32 @@ h1 {
 .login-form input{
     width: 80%;
     margin: 0 auto;
-    margin-bottom: 5%;
-    padding: 2% 1%;
+    margin-top: 5%;
+    padding: 2% 3%;
+    border-radius: 8px;
+}
+
+.error {
+    margin-left: 10%;
 }
 
 .login-form button{
     width: 80%;
-    margin: 3% auto;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
     padding: 5%;
     border: none;
     border-radius: 12px;
     font-size: 21px;
-    color: darkgrey
+    color: darkgrey;
+    cursor: pointer;
+}
+
+.input-error{
+    border-bottom: 4px solid #E9153E;
+}
+
+.input-valid{
+    border-bottom: 4px solid #0EA939;
 }

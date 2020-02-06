@@ -17,17 +17,17 @@ const StudentDashboard = (props) => {
     const [createTicket, setCreateTicket] = useState(false);
     const [detailedTicket, setDetailedTicket] = useState({});
     const [tickets, setTickets] = useState([]);
-    let history = useHistory();
+    // let history = useHistory();
 
     const handleCardClick = number => {
         setDetailedTicket(tickets.find(t => {return t.id === parseInt(number)}));
     }
 
-    useEffect(() => {
-        const userId = localStorage.getItem('userId')
-        props.fetchTickets(userId)
-        history.push("/dashboard")
-    }, [])
+    // useEffect(() => {
+    //     const userId = localStorage.getItem('userId')
+    //     props.fetchTickets(userId)
+    //     history.push("/dashboard")
+    // }, [])
 
     const openClick = () => {
         setTicketOpen('open');

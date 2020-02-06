@@ -25,9 +25,9 @@ function App() {
       <Switch> 
         <Route exact path='/' component={LoginPage} />
         <Route path='/student' component={StudentDashboard} />
-        <Route path='/helper' component={HelperDashboard} />
+        {/* <Route path='/helper' component={HelperDashboard} /> */}
         {/* <PrivateRoute exact path='/tickets/new' component={CreateTicket} /> */}
-        <PrivateRoute exact path="/dashboard" component={HelperDashboard} />
+        {/* <PrivateRoute exact path="/dashboard" component={HelperDashboard} /> */}
       </Switch>
       </div>
     </Router>
