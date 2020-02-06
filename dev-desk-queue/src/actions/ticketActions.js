@@ -43,10 +43,10 @@ export const updateTicket = (ticket, userId) => dispatch => {
 export const fetchAllTickets = () => dispatch => {
     dispatch({ type: FETCHING_ACTIVITY_START });
     axiosWithAuth()
-        .get(`/api/users`)
+        .get(`/api/tickets`)
         .then(res => {
-            console.log('Fetch tickets XXX data 17: ', res.data[17].tickets);
-            dispatch({ type: FETCHING_ACTIVITY_SUCCESS, payload: res.data[17].tickets })
+            console.log('Fetch tickets XXX data 17: ', res.data);
+            dispatch({ type: FETCHING_ACTIVITY_SUCCESS, payload: res.data })
         })
         .catch(err => console.log(err))
 }
