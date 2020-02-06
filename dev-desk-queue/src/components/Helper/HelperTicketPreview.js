@@ -83,20 +83,22 @@ const HelperTicketPreview = props => {
     return(
         <div className='preview-panel'>
             <div className={`detailed-card ${isEmpty(props.detailedTicket) ? 'hidden' : ''}`}>
-                <p>{props.detailedTicket.title}</p>
-                <h2>{props.detailedTicket.ticketCategory} Issue</h2>
-                <h3>Description of Issue:</h3>
-                <p>{props.detailedTicket.description}</p>
-                <h3>What I've tried:</h3>
-                <p>{props.detailedTicket.tried}</p>
+                <div className='detailed-card-info'>
+                    <p>{props.detailedTicket.title}</p>
+                    <h2>{props.detailedTicket.ticketCategory} Issue</h2>
+                    <h3>Description of Issue:</h3>
+                    <p>{props.detailedTicket.description}</p>
+                    <h3>What I've tried:</h3>
+                    <p>{props.detailedTicket.tried}</p>
+                </div>
                 {/* <button className='assign' onClick={()=> assignATicket({ 
                         id: props.detailedTicket.id,
                         helper_id: props.detailedTicket.helper_id
                         } 
                     )}>Assign</button> */}
                
-                
-    {props.detailedTicket.helper_id===userId ? (<div>
+<div className='detailed-card-buttons'>
+    {props.detailedTicket.helper_id===userId ? (<>
         <button className="return" onClick={()=> returnATicket({ 
         id: props.detailedTicket.id,
         helper_id: null
@@ -108,12 +110,13 @@ const HelperTicketPreview = props => {
         } 
     )}>Resolve</button>
         <button className='delete' onClick={()=> props.deleteATicket(props.detailedTicket.id)}>Delete</button> 
-        </div>)
+        </>)
     : (<button className='assign' onClick={()=> assignATicket({ 
         id: props.detailedTicket.id,
         helper_id: userId
         } 
     )}>Assign</button>)}              
+                </div>
             </div>
         </div>
     );

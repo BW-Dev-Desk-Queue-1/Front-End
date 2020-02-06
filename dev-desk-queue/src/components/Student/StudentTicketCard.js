@@ -24,7 +24,7 @@ const StudentTicketCard = props => {
     }
 
     return(
-        <div data-number={props.details.id} className={`ticket-card ${props.details.ticketCategory}-category`} onClick={props.handleClick}>
+        <div data-number={props.details.id} className={`ticket-card ${props.details.ticketCategory.toLowerCase()}-category`} onClick={props.handleClick}>
             <div className='timestamp'>{`${daysAgo()}`}</div>
             <div className='card-summary'>
                 <p>{props.details.title}</p>

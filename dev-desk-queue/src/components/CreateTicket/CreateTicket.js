@@ -30,29 +30,21 @@ return (
           name="title"
           defaultValue=""
           ref={register({ required: true, maxLength: 20 })}
-          className='ticket-title'
+          className={`ticket-title ${errors.title ? 'input-error' : ''}`}
         />
-        {errors.title && <p className="error">Title is required</p>}
-        <br />
         <label><span className='red'>*</span> What is this issue about?</label>
-        <select name="ticketCategory" ref={register({ required: true })}>
+        <select name="ticketCategory" className={`${errors.category ? 'input-error' : ''}`} ref={register({ required: true })}>
           <option value='Equipment'>Equipment</option>
           <option value='People'>People</option>
           <option value='Track'>Track</option>
           <option value='Finances'>Finances</option>
           <option value='Other'>Other</option>
         </select>
-        {errors.category && <p className="error">Description is required</p>}
-        <br />
         <label><span className='red'>*</span> Description</label>
-        <textarea name="description" rows='4' cols='70' ref={register({ required: true })} />
-        {errors.description && <p className="error">Description is required</p>}
-        <br />
-        <label><span className='red'>*</span> What have you Tried?</label>
-        <textarea name="tried" rows='4' cols='70' ref={register({ required: true })} />
-        {errors.tried && <p className="error">Tell us What you have Tried</p>}
-        <br />
-        <div className='submit-container'><input type="submit" className='submit' /></div>
+        <textarea name="description" rows='4' cols='70' className={`${errors.description ? 'input-error' : ''}`} ref={register({ required: true })} />
+        <label><span className='red'>*</span> What have you tried?</label>
+        <textarea name="tried" rows='4' cols='70' className={`${errors.tried ? 'input-error' : ''}`} ref={register({ required: true })}/>
+        <div className='submit-container'><input type="submit" className={`submit`} /></div>
       </form>
     </div>
   </div>

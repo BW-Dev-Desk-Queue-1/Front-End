@@ -7,7 +7,7 @@
     border-right: 3px solid #f3f3f3;
     height: 100vh;
     position:fixed;
-    width: 30%;
+    width: 25%;
 }
 
 .title{
@@ -38,13 +38,35 @@
 
 .create-ticket-button{
     cursor: pointer;
-    background: #0070EB;
-    color: white;
-    padding: 7% 3%;
+    background: white;
+    color: #0070EB;
+    border: 2px solid #0070EB;
+    padding: 5% 2%;
     font-size: 24px;
     text-align:center;
-    margin: 10% 20%;
+    margin: 10% 25%;
     border-radius: 20px;
+}
+
+.create-ticket-button:hover{
+    background: #0070EB;
+    color: white;
+}
+
+.logout-button{
+    cursor: pointer;
+    background: white;
+    border: 2px solid black;
+    padding: 5% 2%;
+    font-size: 24px;
+    text-align: center;
+    margin: 10% 25%;
+    border-radius: 20px;
+}
+
+.logout-button:hover{
+    background: black;
+    color: white;
 }
 
 .ticket-card{
@@ -84,6 +106,9 @@
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.02);
     margin: 2% 5%;
     padding: 7% 5%;
+
+    display:flex;
+    flex-direction: column;
 }
 
 .detailed-card h2{
@@ -108,12 +133,14 @@
     background: #F2FCFF;
     border-radius: 8px;
     border: 2px solid #48C8E8;
-    position: absolute;
-    left: 90%;
-    top: 7%;
     width: 5%;
     cursor: pointer;
     padding: .2% 0;
+}
+
+.detailed-card-buttons{
+    display:flex;
+    justify-content: space-around;
 }
 
 .hidden{
@@ -122,7 +149,7 @@
 
 .ticket-list{
     background: #F9FAFB;
-    margin-left: 30%;
+    margin-left: 25%;
     width: 40%;
     min-height: 100vh;
 }
@@ -135,8 +162,8 @@
     background: #F9FAFB;
     height: 100vh;
     position:fixed;
-    width: 30%;
-    margin-left: 70%;
+    width: 35%;
+    margin-left: 65%;
 }
 
 .ticket-card{
@@ -164,4 +191,24 @@
 .card-summary{
     padding-left: 4%;
     white-space: nowrap;
+}
+
+.edit-form{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.edit-form-buttons{
+    display:flex;
+    margin-left: 25%
+}
+
+.edit-form button{
+    background: #F2FCFF;
+    border-radius: 8px;
+    border: 2px solid #48C8E8;
+    width: 20%;
+    cursor: pointer;
+    padding: .2% 0;
+    margin: 0 2%;
 }
