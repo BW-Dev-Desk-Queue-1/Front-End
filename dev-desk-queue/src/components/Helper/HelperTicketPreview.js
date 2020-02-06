@@ -1,4 +1,6 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
+
 import './HelperDashboard.css';
 
 
@@ -11,6 +13,19 @@ const HelperTicketPreview = props => {
     //what I've tried
     //if open ticket: edit button
     //if closed ticket: reopen button
+    // const [messy, setMessy] = useState({
+    //     id: props.detailedTicket.id,
+    //     title: props.detailedTicket.title,
+    //     description: props.detailedTicket.description,
+    //     ticketCategory: props.detailedTicket.ticketCategory,
+    //     created_at: props.detailedTicket.created_at,
+    //     tried: props.detailedTicket.tried,
+    //     user_id: props.detailedTicket.user_id,
+    //     resolved: props.detailedTicket.resolved,
+    //     helper_id: props.detailedTicket.helper_id
+    // })
+    let history = useHistory();
+
     const userId = localStorage.getItem('userId')
     const isEmpty = obj => {
         for(var prop in obj){
@@ -19,8 +34,18 @@ const HelperTicketPreview = props => {
         }
         return true;
     }
-    
 
+    const helperId = () => {
+        props.setDetailedTicket({
+            ...props.detailedTicket,
+            helper_id: userId,
+        });
+     }
+     const assignATicket = (ticket) => { 
+        helperId()     
+        props.assignTicket(ticket)
+        history.push("/dashboard")
+    }
    
     return(
         <div className='preview-panel'>
@@ -31,7 +56,11 @@ const HelperTicketPreview = props => {
                 <p>{props.detailedTicket.description}</p>
                 <h3>What I've tried:</h3>
                 <p>{props.detailedTicket.tried}</p>
-                <button className='assign'>Assign</button>
+                <button className='assign' onClick={()=> assignATicket({ 
+                        id: props.detailedTicket.id,
+                        helper_id: props.detailedTicket.helper_Id
+                        } 
+                    )}>Assign</button>
                 <button className='delete' onClick={()=> props.deleteATicket(props.detailedTicket.id)}>Delete</button>                
             </div>
         </div>
