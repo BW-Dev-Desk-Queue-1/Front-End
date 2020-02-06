@@ -61,8 +61,8 @@ const HelperTicketPreview = props => {
                         helper_id: props.detailedTicket.helper_id
                         } 
                     )}>Assign</button> */}
+               
                 
-                {console.log("testing return: ",props.detailedTicket.helper_id)}
     {props.detailedTicket.helper_id===userId ? (<div>
         <button className="return">Return</button>
         <button className="assign">Resolve</button>
