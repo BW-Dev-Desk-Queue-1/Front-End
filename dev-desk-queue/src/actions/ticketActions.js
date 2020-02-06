@@ -56,24 +56,24 @@ export const deleteTicket = ( ticketId, userId ) => dispatch => {
         .catch(err => console.log(err))
 }
 
-export const assignTicket = ( ticket )  => dispatch => {       
-    console.log(`assign ticket?`, ticket) 
-    axiosWithAuth()
-        .put(`/api/tickets/${ticket.id}`, ticket)
+// export const assignTicket = ( ticket )  => dispatch => {       
+//     console.log(`assign ticket?`, ticket) 
+//     axiosWithAuth()
+//         .put(`/api/tickets/${ticket.id}`, ticket)
         
-        .then(res => {
-            console.log(`Assign Ticket!`, res)
-            dispatch({ type: HELPER_ASSIGN_TICKET, payload: res.data  })
-        })
-        .catch(err => console.log(err))
-}
+//         .then(res => {
+//             console.log(`Assign Ticket!`, res)
+//             dispatch({ type: HELPER_ASSIGN_TICKET, payload: res.data  })
+//         })
+//         .catch(err => console.log(err))
+// }
 
 export const assignTicket = ( ticket )  => dispatch => {       
-    console.log(`assign ticket?`, ticket) 
+    console.log(`assign before api`, ticket) 
     axiosWithAuth()
         .put(`/api/tickets/${ticket.id}`, ticket)
         .then(res => {
-            console.log(`Assign Ticket!`, res)
+            console.log(`Assign Ticket! api resonpse`, res)
             dispatch({ type: HELPER_ASSIGN_TICKET, payload: res.data  })
         })
         .catch(err => console.log(err))

@@ -26,7 +26,7 @@ const HelperTicketPreview = props => {
     // })
     let history = useHistory();
 
-    const userId = localStorage.getItem('userId')
+    const userId = JSON.parse(localStorage.getItem('userId'))
     const isEmpty = obj => {
         for(var prop in obj){
             if(obj.hasOwnProperty(prop))
@@ -56,12 +56,23 @@ const HelperTicketPreview = props => {
                 <p>{props.detailedTicket.description}</p>
                 <h3>What I've tried:</h3>
                 <p>{props.detailedTicket.tried}</p>
-                <button className='assign' onClick={()=> assignATicket({ 
+                {/* <button className='assign' onClick={()=> assignATicket({ 
                         id: props.detailedTicket.id,
-                        helper_id: props.detailedTicket.helper_Id
+                        helper_id: props.detailedTicket.helper_id
                         } 
-                    )}>Assign</button>
-                <button className='delete' onClick={()=> props.deleteATicket(props.detailedTicket.id)}>Delete</button>                
+                    )}>Assign</button> */}
+                
+                {console.log("testing return: ",props.detailedTicket.helper_id)}
+    {props.detailedTicket.helper_id===userId ? (<div>
+        <button className="return">Return</button>
+        <button className="assign">Resolve</button>
+        <button className='delete' onClick={()=> props.deleteATicket(props.detailedTicket.id)}>Delete</button> 
+        </div>)
+    : (<button className='assign' onClick={()=> assignATicket({ 
+        id: props.detailedTicket.id,
+        helper_id: props.detailedTicket.helper_id
+        } 
+    )}>Assign</button>)}              
             </div>
         </div>
     );

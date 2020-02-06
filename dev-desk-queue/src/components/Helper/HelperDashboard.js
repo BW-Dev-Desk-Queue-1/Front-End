@@ -12,10 +12,10 @@ const HelperDashboard = props => {
     //Login page routes here
     //Leaving ticket creation page routes here
     //Create div that holds all components of HelperTicketQueue page
-    const [myTicket, setMyTicket] = useState('all');
+    const [myTicket, setMyTicket] = useState('mine');
     const [detailedTicket, setDetailedTicket] = useState({});
     let history = useHistory();
-    let userId = localStorage.getItem('userId')
+    let userId = JSON.parse(localStorage.getItem('userId'))
 
     const handleCardClick = number => {
         setDetailedTicket(props.tickets.find(t => {return t.id === parseInt(number)}));
@@ -50,7 +50,7 @@ const HelperDashboard = props => {
             <div className='helper-dashboard'>
                 <HelperNavBar myTicket={myTicket} myTicketClick={myTicketClick} allTicketClick={allTicketClick} />
                 <HelperTicketCardList helperId={userId} tickets={props.tickets} status={myTicket} onCardClick={handleCardClick} />
-                <HelperTicketPreview detailedTicket={detailedTicket} deleteATicket={deleteATicket}  assignTicket={assignTicket} setDetailedTicket={setDetailedTicket}
+                <HelperTicketPreview detailedTicket={detailedTicket} deleteATicket={deleteATicket}  assignTicket={props.assignTicket} setDetailedTicket={setDetailedTicket}
                 />
             </div>
         );
