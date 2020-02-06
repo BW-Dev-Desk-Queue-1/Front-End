@@ -22,7 +22,7 @@ const HelperDashboard = props => {
     let userId = localStorage.getItem('userId')
 
     const handleCardClick = number => {
-        setDetailedTicket(tickets.find(t => {return t.id === parseInt(number)}));
+        setDetailedTicket(props.tickets.find(t => {return t.id === parseInt(number)}));
     }
 
     useEffect(() => {

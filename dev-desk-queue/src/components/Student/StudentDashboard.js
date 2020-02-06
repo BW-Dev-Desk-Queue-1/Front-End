@@ -16,12 +16,11 @@ const StudentDashboard = (props) => {
     const [ticketOpen, setTicketOpen] = useState('open');
     const [createTicket, setCreateTicket] = useState(false);
     const [detailedTicket, setDetailedTicket] = useState({});
-    const [tickets, setTickets] = useState([]);
     let history = useHistory();
     let userId = localStorage.getItem('userId')
 
     const handleCardClick = number => {
-        setDetailedTicket(tickets.find(t => {return t.id === parseInt(number)}));
+        setDetailedTicket(props.tickets.find(t => {return t.id === parseInt(number)}));
     }
 
        useEffect(() => {
@@ -43,15 +42,19 @@ const StudentDashboard = (props) => {
         setCreateTicket(false);
     }
 
+    if(!props.tickets) {
+        return <div>Loading...</div>        
+    } else {
     return (
         <div className='student-dashboard'>
             { createTicket ? <CreateTicket createTicket={createTicket} closeTicket={closeTicket}/> : null }
-            <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} />
+            <StudentNavBar ticketOpen={ticketOpen} openClick={openClick} closedClick={closedClick} createTicket={newTicket} />
             <StudentTicketCardList tickets={props.tickets} status={ticketOpen} onCardClick={handleCardClick} />
             <StudentTicketPreview detailedTicket={detailedTicket} setDetailedTicket={setDetailedTicket} updateTicket={props.updateTicket}/>
         </div>
      )
   } 
+}
 
 const mapStateToProps= (state) => {
     return {

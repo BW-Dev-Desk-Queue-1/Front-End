@@ -11,11 +11,12 @@ const CreateTicket = props => {
     let history = useHistory();
 
     const onSubmit = data => {
+      console.log('something')
       const userId = localStorage.getItem('userId');
       props.postTicket(data, userId);
-      history.push('/dashboard')
+      props.closeTicket()
     }
-    
+    ;
     
 return (
   <div className='modal'>
@@ -34,7 +35,7 @@ return (
         {errors.title && <p className="error">Title is required</p>}
         <br />
         <label><span className='red'>*</span> What is this issue about?</label>
-        <select name="category" ref={register({ required: true })}>
+        <select name="ticketCategory" ref={register({ required: true })}>
           <option value='Equipment'>Equipment</option>
           <option value='People'>People</option>
           <option value='Track'>Track</option>
