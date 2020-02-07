@@ -27,6 +27,15 @@ const StudentTicketPreview = props => {
         setEdit(false);
     }
 
+
+    const reopenATicket = e => {  
+        e.preventDefault();
+        props.updateTicket({
+            ...props.detailedTicket,
+            resolved: false
+        })       
+    }
+
     const handleEditChanges = e => {
         e.preventDefault();
         props.setDetailedTicket({
