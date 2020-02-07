@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
+
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import './LoginPage/LoginPage.css';
 const HelperLogin = props => {
-  
+  const [error, setError] = useState()
   let history = useHistory();
   const { register, errors, handleSubmit, formState } = useForm({
     mode: "onBlur"
@@ -22,12 +23,14 @@ const HelperLogin = props => {
         history.push('/dashboard')
       })
       .catch(err => {
-        console.log(`login error`, err)      
+        console.log(`login error`, err)   
+        setError('Invalid username or password.')     
       })
   }
  
   return (
     <div className={`login-form ${props.sh === 'helper' && props.lr === 'login' ? '' : 'hidden'}`}>
+      {error && <span className='error'>{error}</span>} 
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           name="username"
@@ -39,6 +42,7 @@ const HelperLogin = props => {
 
         <input
           name="password"
+          type="password"
           ref={register({required: 'true'})}
           className={`${formState.touched.password && errors.password ? 'input-error' : ''} ${formState.touched.password && !errors.password ? 'input-valid' : ''}`}
           placeholder='password'

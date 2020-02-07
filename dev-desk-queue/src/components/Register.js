@@ -13,7 +13,7 @@ const Register = props => {
   const { register, errors, handleSubmit, formState } = useForm({
     mode: "onBlur"
   });
-  
+  useE
   const onSubmit = data => { 
     axios.post("https://dev-help-desk.herokuapp.com/api/register", data)
     .then(res => {console.log(res.data)
@@ -38,6 +38,7 @@ const Register = props => {
 
         <input
           name="password"
+          type="password"
           ref={register({required: 'true'})}
           className={`${formState.touched.password && errors.password ? 'input-error' : ''} ${formState.touched.password && !errors.password ? 'input-valid' : ''}`}
           placeholder='password'

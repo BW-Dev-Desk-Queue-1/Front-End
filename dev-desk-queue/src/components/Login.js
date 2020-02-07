@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux'
 
 import './LoginPage/LoginPage.css';
 const Login = props => {
@@ -10,10 +11,12 @@ const Login = props => {
   const { register, errors, handleSubmit, formState } = useForm({
     mode: "onBlur"
   });
+  const [error, setError] = useState()
 
   const handleChange = () => {
     console.log(JSON.stringify(formState))
   }
+  
   
   const onSubmit = data => { 
     axios
@@ -23,15 +26,20 @@ const Login = props => {
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('userId', res.data.userId)
         localStorage.setItem('accessType', res.data.accessType)
+        setError(null)
         history.push('/dashboard')
       })
       .catch(err => {
-        console.log(`login error`, err)      
+        console.log(`login error`, err)   
+        setError('Invalid username or password.')
+           
       })
   }
+  console.log(error)
  
   return (
     <div className={`login-form ${props.lr === 'login' && props.sh === 'student' ? '' : 'hidden'}`}>
+    {error && <span className='error'>{error}</span>} 
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           name="username"
@@ -44,6 +52,7 @@ const Login = props => {
 
         <input
           name="password"
+          type="password"
           ref={register({required: 'true'})}
           className={`${formState.touched.password && errors.password ? 'input-error' : ''} ${formState.touched.password && !errors.password ? 'input-valid' : ''}`}
           placeholder='password'

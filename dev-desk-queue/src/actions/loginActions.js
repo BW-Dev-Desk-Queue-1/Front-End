@@ -12,6 +12,7 @@ export const fetchLogin = (id) => dispatch => {
         dispatch({type:USER_LOGIN_SUCCESS, payload: res.data})
     })
     .catch(err => {
+        console.log("Login errors: ", err)
         dispatch({type:USER_LOGIN_ERROR, payload: err})
     })
 }
