@@ -6,7 +6,7 @@ const Dashboard = props => {
   const accessType = localStorage.getItem('accessType')
   return (
     <div>
-      {accessType==='student' ? <StudentDashboard /> :
+      {accessType ==='student' ? <StudentDashboard /> :
       <HelperDashboard /> }
     </div>
   )

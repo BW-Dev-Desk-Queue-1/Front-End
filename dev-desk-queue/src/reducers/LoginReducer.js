@@ -6,8 +6,8 @@ const initialState = {
   error: null
 }
 
-export const LoginReducer = (state = initialState, action) => {
-  switch(action.type) {
+export const LoginReducer = (state = initialState, {type, payload}) => {
+  switch(type) {
     case USER_LOGIN_START :
       return {
         ...state,
@@ -17,13 +17,13 @@ export const LoginReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        user: action.payload
+        user: payload
       }
     case USER_LOGIN_ERROR :
       return {
         ...state,
         loggingIn: false,
-        error: action.payload
+        error: payload
       }
     default :
       return state

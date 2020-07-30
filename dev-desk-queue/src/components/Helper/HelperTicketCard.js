@@ -20,7 +20,7 @@ const HelperTicketCard = props => {
         } else if(diff < 2){
             return 'yesterday';
         } else
-            return `${diff} Days Ago`;
+            return `${Math.ceil(diff)} Days Ago`;
     }
 
     return(

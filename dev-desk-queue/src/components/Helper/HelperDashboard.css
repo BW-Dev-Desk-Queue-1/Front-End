@@ -184,3 +184,17 @@
     padding-left: 4%;
     white-space: nowrap;
 }
+
+.preview-window-header-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: blue;
+}
+.preview-window-x{
+    color:red;
+}
+
+.preview-window-x:hover{
+    cursor: pointer;
+}

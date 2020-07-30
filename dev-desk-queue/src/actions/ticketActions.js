@@ -10,12 +10,13 @@ export const HELPER_ASSIGN_TICKET = "HELPER_ASSIGN_TICKET";
 
 
 export const fetchTickets = (userId) => dispatch => {
-    dispatch({type:FETCHING_ACTIVITY_START});
-    axiosWithAuth().get(`/api/users/${userId}/tickets` )
-    .then(res => {
-        dispatch({type:FETCHING_ACTIVITY_SUCCESS, payload: res.data.tickets})
-    })
-    .catch(err => console.log(err))
+    dispatch({ type: FETCHING_ACTIVITY_START });
+    axiosWithAuth()
+        .get(`/api/users/${userId}/tickets`)
+        .then(res => {
+            dispatch({type:FETCHING_ACTIVITY_SUCCESS, payload: res.data.tickets})
+        })
+        .catch(err => console.log(err))
 }
     
 export const postTicket = (values, userId) => dispatch => {
@@ -57,8 +58,6 @@ export const deleteTicket = ( ticketId, userId ) => dispatch => {
         })
         .catch(err => console.log(err))
 }
-
-
 
 export const assignTicket = ( ticket )  => dispatch => {       
     console.log(`assign before api`, ticket) 

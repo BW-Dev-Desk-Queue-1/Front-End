@@ -10,8 +10,8 @@ const initialState = {
   id: localStorage.getItem('userId')
 }
 
-export const TicketReducer = (state = initialState, action) => {
-  switch(action.type) {
+export const TicketReducer = (state = initialState, {type, payload}) => {
+  switch(type) {
     case FETCHING_ACTIVITY_START: 
       return {
         ...state,
@@ -21,39 +21,39 @@ export const TicketReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        tickets: action.payload
+        tickets: payload
       }
     case FETCHING_ACTIVITY_FAILURE: 
       return {
         ...state,
         loading: false,
-        errors: action.payload
+        errors: payload
       }
     case POST_TICKET_SUCCESS: 
       return {
         ...state,
         loading: false,
-        tickets: [...state.tickets, action.payload]
+        tickets: [...state.tickets, payload]
       }
     case POST_TICKET_FAILURE :
       return {
         ...state,
         loading: false, 
-        errors: action.payload
+        errors: payload
       }
     case UPDATE_TICKET_SUCCESS :
       return {
         ...state,
         loading: false, 
         tickets: state.tickets.map(
-          ticket => ticket.id === action.payload.id ? {...ticket, ...action.payload} : ticket
+          ticket => ticket.id === payload.id ? {...ticket, ...payload} : ticket
       )
     }
     case HELPER_ASSIGN_TICKET :
       return {
         ...state,
         tickets: state.tickets.map(
-          ticket => ticket.id === action.payload.id ? {...ticket, ...action.payload} : ticket
+          ticket => ticket.id === payload.id ? {...ticket, ...payload} : ticket
       )
         
       }
