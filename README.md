@@ -3,6 +3,15 @@
 ## Dev Desk Queue
 This application is built to be a solution to providing tech support to a group and presents an interface for users to submit tickets, and for admins to view and resolve those tickets. This project was developed over the course of a week as a hackathon project, and is not actively supported.
 
+## Guest Access
+If you are here to demo the features of this app but don't want to create a new login, you can use the following guest credentials
+### Student Guest
+- username: `guest@student.com`
+- password: `Test123`
+### Helper Guest
+- username: `guest@helper.com`
+- password: `Test123`
+
 ## Deployment
 The front end for this project is deployed [here](https://queue.bw-dev-desk-queue-1.now.sh/)
 
